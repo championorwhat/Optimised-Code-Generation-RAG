@@ -17,6 +17,13 @@ STRICT OUTPUT RULES:
 - NO markdown explanations before code
 - NO extra commentary
 
+IMPORTANT RULES:
+- Return ONLY valid Python code.
+- Define ONLY functions or classes.
+- DO NOT include print statements.
+- DO NOT include example usage or test calls.
+- The function must RETURN values, not print them.
+
 FORMAT:
 <CODE>
 {language.lower()} code only
