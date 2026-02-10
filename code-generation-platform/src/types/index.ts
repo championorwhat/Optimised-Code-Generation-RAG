@@ -18,7 +18,7 @@ export interface User {
     name: string;
     provider: 'openai' | 'anthropic' | 'google' | 'meta' | 'custom';
     apiKey?: string;
-    config?: Record<string, any>;
+    config?: Record<string, unknown>;
     costPerToken: number;
     avgLatency: number; // ms
     passRate: number; // 0-100
@@ -73,8 +73,8 @@ export interface User {
   export interface TestCase {
     id: string;
     name: string;
-    input: any;
-    expectedOutput: any;
+    input: unknown;
+    expectedOutput: unknown;
     description?: string;
   }
   
@@ -85,8 +85,8 @@ export interface User {
     duration: number; // ms
     errorMessage?: string;
     stackTrace?: string;
-    actualOutput?: any;
-    expectedOutput?: any;
+    actualOutput?: unknown;
+    expectedOutput?: unknown;
   }
   
   export interface TestSuite {
@@ -160,6 +160,104 @@ export interface User {
     status: number;
     message: string;
     code: string;
-    details?: Record<string, any>;
+    details?: Record<string, unknown>;
   }
-  
+/**
+ * EGRR Pipeline Types
+ */
+export type EGRRPhase = 'retrieval' | 'generation' | 'execution' | 'review' | 'decision';
+export type EGRRStatus = 'success' | 'partial' | 'failed' | 'pending' | 'running';
+
+export interface PhaseResult {
+  duration_ms: number;
+  [key: string]: unknown;
+}
+
+export interface RetrievalPhaseResult extends PhaseResult {
+  queries: string[];
+  documents_retrieved: number;
+  pattern_ids: string[];
+}
+
+export interface GenerationPhaseResult extends PhaseResult {
+  code?: string;
+  code_length: number;
+  confidence: number;
+  explanation?: string;
+  patterns_used: string[];
+}
+
+
+export interface ExecutionPhaseResult extends PhaseResult {
+  status: string;
+  exit_code: number;
+  tests_passed: number;
+  tests_failed: number;
+  coverage: number;
+  stdout_preview: string;
+  stderr_preview: string;
+}
+
+export interface ReviewPhaseResult extends PhaseResult {
+  quality_score: number;
+  correctness_status: string;
+  security_status: string;
+  robustness_status: string;
+  critical_issues_count: number;
+  critical_issues: string[];
+}
+
+export interface DecisionPhaseResult extends PhaseResult {
+  decision: string;
+  rationale: string;
+  next_focus?: string;
+}
+
+export interface IterationDetail {
+  iteration_number: number;
+  phase_results: {
+    retrieval?: RetrievalPhaseResult;
+    generation?: GenerationPhaseResult;
+    execution?: ExecutionPhaseResult;
+    review?: ReviewPhaseResult;
+    decision?: DecisionPhaseResult;
+  };
+  retrieval_count: number;
+  code_generated: boolean;
+  execution_status: string | null;
+  tests_passed: number;
+  tests_failed: number;
+  coverage: number;
+  critical_issues: string[];
+  decision: string | null;
+  duration_ms: number;
+}
+
+export interface EGRRGenerateRequest {
+  query: string;
+  language?: string;
+  max_iterations?: number;
+  use_rag?: boolean;
+}
+
+export interface EGRRGenerateResponse {
+  code: string;
+  explanation: string;
+  iterations: number;
+  status: EGRRStatus;
+  coverage: number | null;
+  tests_passed: number | null;
+  tests_failed: number | null;
+  iteration_details: IterationDetail[];
+  total_duration_ms: number;
+  retrieved_patterns: string[];
+}
+
+export interface EGRRRunState {
+  status: 'idle' | 'running' | 'completed' | 'error';
+  currentIteration: number;
+  currentPhase: EGRRPhase | null;
+  result: EGRRGenerateResponse | null;
+  error: string | null;
+  startTime: Date | null;
+}  

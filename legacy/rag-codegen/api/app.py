@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 
@@ -8,6 +9,15 @@ app = FastAPI(
     title="RAG-Based Code Generation API",
     description="Retrieval-Augmented Code Generation using LLMs",
     version="1.0.0"
+)
+
+# CORS middleware - allows Swagger UI and frontend to work
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Initialize pipeline once (important for performance)

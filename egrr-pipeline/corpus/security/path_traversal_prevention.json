@@ -1,0 +1,10 @@
+{
+    "id": "sec-path-001",
+    "code": "import os\nfrom pathlib import Path\n\ndef safe_file_read(base_dir: str, filename: str) -> str:\n    \"\"\"EGRR_PATTERN: Prevent path traversal attacks.\"\"\"\n    # Resolve to absolute paths\n    base = Path(base_dir).resolve()\n    requested = (base / filename).resolve()\n    \n    # Verify the requested path is under base directory\n    if not str(requested).startswith(str(base)):\n        raise ValueError(f'Path traversal attempt detected: {filename}')\n    \n    if not requested.exists():\n        raise FileNotFoundError(f'File not found: {filename}')\n    \n    if not requested.is_file():\n        raise ValueError(f'Not a file: {filename}')\n    \n    return requested.read_text(encoding='utf-8')\n\ndef safe_file_path(base_dir: str, user_input: str) -> Path:\n    \"\"\"EGRR_PATTERN: Validate and sanitize file path from user input.\"\"\"\n    # Remove path separators and dangerous patterns\n    sanitized = os.path.basename(user_input)\n    sanitized = sanitized.replace('..', '').replace('~', '')\n    \n    if not sanitized or sanitized.startswith('.'):\n        raise ValueError('Invalid filename')\n    \n    full_path = (Path(base_dir) / sanitized).resolve()\n    base = Path(base_dir).resolve()\n    \n    if not str(full_path).startswith(str(base)):\n        raise ValueError('Path traversal attempt')\n    \n    return full_path",
+    "language": "python",
+    "explanation": "Prevent path traversal by resolving paths to absolute form and verifying they remain within the allowed base directory. Never trust user-provided file paths.",
+    "tags": ["security", "path-traversal", "file-access", "lfi", "directory-traversal"],
+    "error_signatures": ["path traversal", "../", "directory traversal", "file access"],
+    "vulnerability": "Path Traversal (CWE-22)",
+    "broken_example": "open(os.path.join(base_dir, user_filename))"
+}

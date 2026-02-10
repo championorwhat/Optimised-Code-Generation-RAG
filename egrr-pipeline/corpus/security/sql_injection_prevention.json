@@ -1,0 +1,10 @@
+{
+    "id": "sec-sql-001",
+    "code": "import sqlite3\nfrom typing import Any\n\ndef safe_query_user(db_path: str, user_id: int) -> dict | None:\n    \"\"\"EGRR_PATTERN: Parameterized query to prevent SQL injection.\"\"\"\n    conn = sqlite3.connect(db_path)\n    cursor = conn.cursor()\n    # NEVER use f-strings or .format() with user input in SQL\n    cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))\n    row = cursor.fetchone()\n    conn.close()\n    return dict(zip(['id', 'name', 'email'], row)) if row else None\n\ndef safe_search_users(db_path: str, search_term: str) -> list[dict]:\n    \"\"\"EGRR_PATTERN: Safe LIKE query with parameterization.\"\"\"\n    conn = sqlite3.connect(db_path)\n    cursor = conn.cursor()\n    # Escape wildcards in search term and use parameter\n    safe_term = search_term.replace('%', '\\\\%').replace('_', '\\\\_')\n    cursor.execute('SELECT * FROM users WHERE name LIKE ? ESCAPE \"\\\\\"', (f'%{safe_term}%',))\n    rows = cursor.fetchall()\n    conn.close()\n    return [dict(zip(['id', 'name', 'email'], row)) for row in rows]",
+    "language": "python",
+    "explanation": "Prevent SQL injection by using parameterized queries with ? placeholders instead of string formatting. Never concatenate user input directly into SQL strings.",
+    "tags": ["security", "sql", "injection", "database", "sqlite", "parameterized-query"],
+    "error_signatures": ["SQL injection", "unsanitized input", "user input in query"],
+    "vulnerability": "SQL Injection (CWE-89)",
+    "broken_example": "cursor.execute(f'SELECT * FROM users WHERE id = {user_id}')"
+}

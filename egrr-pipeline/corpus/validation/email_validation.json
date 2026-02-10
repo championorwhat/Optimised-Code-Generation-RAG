@@ -1,0 +1,8 @@
+{
+    "id": "val-email-001",
+    "code": "import re\nfrom typing import Optional\n\ndef validate_email(email: str) -> bool:\n    \"\"\"EGRR_PATTERN: Validate email format using regex.\"\"\"\n    if not email or not isinstance(email, str):\n        return False\n    \n    # RFC 5322 compliant email pattern (simplified)\n    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'\n    \n    if len(email) > 254:  # Max email length per RFC\n        return False\n    \n    return bool(re.match(pattern, email.strip()))\n\ndef normalize_email(email: str) -> Optional[str]:\n    \"\"\"EGRR_PATTERN: Normalize and validate email address.\"\"\"\n    if not email:\n        return None\n    \n    email = email.strip().lower()\n    \n    if not validate_email(email):\n        return None\n    \n    # Handle Gmail-style dots and plus addressing\n    local, domain = email.rsplit('@', 1)\n    \n    return f'{local}@{domain}'\n\ndef validate_email_domain(email: str, allowed_domains: list[str] = None) -> bool:\n    \"\"\"EGRR_PATTERN: Validate email with domain whitelist.\"\"\"\n    if not validate_email(email):\n        return False\n    \n    if allowed_domains is None:\n        return True\n    \n    domain = email.rsplit('@', 1)[1].lower()\n    return domain in [d.lower() for d in allowed_domains]",
+    "language": "python",
+    "explanation": "Validate email addresses with proper regex patterns, length checks, and optional domain whitelisting. Always normalize emails before comparison.",
+    "tags": ["validation", "email", "regex", "input-validation", "format-check"],
+    "error_signatures": ["invalid email", "email validation", "email format"]
+}

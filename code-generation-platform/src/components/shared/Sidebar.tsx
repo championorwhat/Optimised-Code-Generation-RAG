@@ -15,6 +15,7 @@ import {
   CheckSquare,
   History,
   Settings,
+  Zap,
 } from 'lucide-react';
 
 const MENU_ITEMS = [
@@ -23,6 +24,13 @@ const MENU_ITEMS = [
     label: 'Dashboard',
     href: '/dashboard',
     icon: LayoutDashboard,
+  },
+  { 
+    id: 'egrr-pipeline', 
+    label: 'EGRR Pipeline', 
+    href: '/egrr', 
+    icon: Zap,
+    highlight: true,
   },
   { id: 'new-run', label: 'New Run', href: '/runs/new', icon: Plus },
   { id: 'models', label: 'Models', href: '/models', icon: Cpu },
@@ -73,7 +81,10 @@ export function Sidebar() {
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {MENU_ITEMS.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname.startsWith(item.href);
+            const isActive = pathname.startsWith(item.href) && 
+              // Special handling to not match /runs/egrr when on /runs
+              !(item.href === '/runs' && pathname.includes('/runs/'));
+            const isHighlight = 'highlight' in item && item.highlight;
 
             return (
               <Link
@@ -83,13 +94,20 @@ export function Sidebar() {
                   'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
                     ? 'bg-blue-500 text-white'
+                    : isHighlight && !isActive
+                    ? 'text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20'
                     : 'text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100'
                 )}
                 title={collapsed ? item.label : undefined}
               >
-                <Icon size={20} className="flex-shrink-0" />
+                <Icon size={20} className={clsx("shrink-0", isHighlight && !isActive && "text-yellow-400")} />
                 {!collapsed && (
                   <span className="text-sm font-medium">{item.label}</span>
+                )}
+                {!collapsed && isHighlight && !isActive && (
+                  <span className="ml-auto text-xs px-1.5 py-0.5 bg-yellow-500/20 text-yellow-400 rounded">
+                    NEW
+                  </span>
                 )}
               </Link>
             );
