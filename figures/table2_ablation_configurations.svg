@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420"
+     font-family="'Times New Roman', Times, serif">
+
+  <!-- Background -->
+  <rect width="1100" height="420" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a2e"
+        letter-spacing="0.2">TABLE II: Ablation Configurations (C1–C5) Across Retrieval and Refinement Components</text>
+
+  <!-- ============ TABLE LAYOUT ============ -->
+  <!-- Col widths: Config=220, then 7 data cols × 110 = 770.  Total = 990 -->
+  <!-- x-starts: 55, 275, 385, 495, 605, 715, 825, 935 -->
+
+  <!-- Double top rule (IEEE) -->
+  <line x1="55" y1="50" x2="1045" y2="50" stroke="#1a2840" stroke-width="2"/>
+  <line x1="55" y1="54" x2="1045" y2="54" stroke="#1a2840" stroke-width="0.8"/>
+
+  <!-- Header row background -->
+  <rect x="55" y="56" width="990" height="52" fill="#e8edf4"/>
+
+  <!-- Header labels -->
+  <text x="165" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Configuration</text>
+
+  <text x="330" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Semantic</text>
+  <text x="330" y="84" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Retrieval</text>
+  <text x="330" y="96" text-anchor="middle" font-size="9" fill="#4a5a70">(RAG)</text>
+
+  <text x="440" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Unit Testing</text>
+  <text x="440" y="84" text-anchor="middle" font-size="9" fill="#4a5a70">(Sandbox)</text>
+
+  <text x="550" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Static</text>
+  <text x="550" y="84" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Analysis</text>
+
+  <text x="660" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Dynamic</text>
+  <text x="660" y="84" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Profiling</text>
+
+  <text x="770" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Adversarial</text>
+  <text x="770" y="84" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Testing</text>
+
+  <text x="880" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Exec-Driven</text>
+  <text x="880" y="84" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Re-Retrieval</text>
+
+  <text x="990" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">Refinement</text>
+  <text x="990" y="84" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2840">LLM</text>
+
+  <!-- Header bottom rule -->
+  <line x1="55" y1="108" x2="1045" y2="108" stroke="#1a2840" stroke-width="1.2"/>
+
+  <!-- ============ CHECKMARK / DASH DEFINITIONS ============ -->
+  <!-- ✓ rendered as text, — rendered as text -->
+
+  <!-- ============ DATA ROWS (each 46px tall) ============ -->
+
+  <!-- Row 1: C1 – LLM Only (Zero-Shot Baseline) -->
+  <text x="65" y="137" font-size="11.5" font-weight="700" fill="#2d3748">C1</text>
+  <text x="90" y="137" font-size="11" fill="#4a5a70">LLM Only (Zero-Shot)</text>
+  <text x="330" y="138" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="440" y="138" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="550" y="138" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="660" y="138" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="770" y="138" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="880" y="138" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="990" y="138" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <line x1="55" y1="154" x2="1045" y2="154" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 2: C2 – RAG Only -->
+  <text x="65" y="179" font-size="11.5" font-weight="700" fill="#2d3748">C2</text>
+  <text x="90" y="179" font-size="11" fill="#4a5a70">RAG Only</text>
+  <text x="330" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="440" y="180" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="550" y="180" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="660" y="180" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="770" y="180" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="880" y="180" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="990" y="180" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <line x1="55" y1="196" x2="1045" y2="196" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 3: C3 – RAG + EGRR Baseline -->
+  <text x="65" y="221" font-size="11.5" font-weight="700" fill="#2d3748">C3</text>
+  <text x="90" y="221" font-size="11" fill="#4a5a70">RAG + EGRR Baseline</text>
+  <text x="330" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="440" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="550" y="222" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="660" y="222" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="770" y="222" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="880" y="222" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="990" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <line x1="55" y1="238" x2="1045" y2="238" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 4: C4 – Full Proposed System (highlighted) -->
+  <rect x="55" y="240" width="990" height="42" fill="#f0f5fa"/>
+  <text x="65" y="267" font-size="11.5" font-weight="700" fill="#1a2840">C4</text>
+  <text x="90" y="267" font-size="11" font-weight="700" fill="#1a2840">RAG + Enhanced EGRR (Proposed)</text>
+  <text x="330" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="440" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="550" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="660" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="770" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="880" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="990" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <line x1="55" y1="282" x2="1045" y2="282" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 5: C5 – Non-RAG + Enhanced EGRR -->
+  <text x="65" y="309" font-size="11.5" font-weight="700" fill="#2d3748">C5</text>
+  <text x="90" y="309" font-size="11" fill="#4a5a70">Non-RAG + Enhanced EGRR</text>
+  <text x="330" y="310" text-anchor="middle" font-size="14" fill="#b0b8c4">—</text>
+  <text x="440" y="310" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="550" y="310" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="660" y="310" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="770" y="310" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="880" y="310" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+  <text x="990" y="310" text-anchor="middle" font-size="15" font-weight="700" fill="#2b6cb0">✓</text>
+
+  <!-- Double bottom rule (IEEE) -->
+  <line x1="55" y1="326" x2="1045" y2="326" stroke="#1a2840" stroke-width="0.8"/>
+  <line x1="55" y1="330" x2="1045" y2="330" stroke="#1a2840" stroke-width="2"/>
+
+  <!-- Column dividers (subtle) -->
+  <line x1="275" y1="50" x2="275" y2="330" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="385" y1="50" x2="385" y2="330" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="495" y1="50" x2="495" y2="330" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="605" y1="50" x2="605" y2="330" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="715" y1="50" x2="715" y2="330" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="825" y1="50" x2="825" y2="330" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="935" y1="50" x2="935" y2="330" stroke="#c8d0da" stroke-width="0.4"/>
+
+  <!-- ============ LEGEND ============ -->
+  <text x="55" y="358" font-size="10.5" fill="#2d3748">
+    <tspan font-weight="700" fill="#2b6cb0">✓</tspan>
+    <tspan> Enabled</tspan>
+    <tspan dx="24" fill="#b0b8c4" font-weight="700">—</tspan>
+    <tspan fill="#2d3748"> Disabled</tspan>
+  </text>
+
+  <!-- Footnote -->
+  <text x="55" y="378" font-size="10" fill="#4a5a6a">C3 runs all EGRR iterations as baseline (no novelty mechanisms). C4 introduces novelty from iteration 2 onward. C5 isolates EGRR contribution without RAG.</text>
+  <text x="55" y="393" font-size="10" fill="#4a5a6a">Configuration data sourced from §10.3 of the system architecture specification.</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+    "id": "py-algo-fib-001",
+    "code": "from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef compute_fibonacci_recursive(n):\n    # EGRR_PATTERN: Memoized recursion for O(n) time\n    if n <= 1:\n        return n\n    return compute_fibonacci_recursive(n - 1) + compute_fibonacci_recursive(n - 2)",
+    "language": "python",
+    "explanation": "Optimized Fibonacci using functools.lru_cache to avoid redundant calculations.",
+    "tags": [
+        "fibonacci",
+        "memoization",
+        "recursion",
+        "optimization"
+    ]
+}

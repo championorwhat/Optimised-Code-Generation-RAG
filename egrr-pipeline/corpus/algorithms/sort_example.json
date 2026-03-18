@@ -1,0 +1,11 @@
+{
+    "id": "py-sort-001",
+    "code": "def sort_numbers(numbers):\n    \"\"\"Sorts a list of numbers using the built-in sorted function.\"\"\"\n    return sorted(numbers)",
+    "language": "python",
+    "explanation": "Standard sorting using Python's built-in sorted() which uses Timsort.",
+    "tags": [
+        "sort",
+        "list",
+        "algorithm"
+    ]
+}

@@ -1,0 +1,228 @@
+% ============================================================
+%  Hybrid RAG-EGRR Algorithms — Overleaf-Ready LaTeX
+%  Add these packages to your main document preamble:
+%    \usepackage{algorithm}
+%    \usepackage{algorithmic}
+%    \usepackage{amsmath}
+%    \usepackage{amssymb}
+%  Then \input{algorithms.tex} in your methodology section.
+% ============================================================
+
+
+% ────────────────────────────────────────────────────────────
+%  ALGORITHM 1: Stage-1 RAG-CodeGen Pipeline
+% ────────────────────────────────────────────────────────────
+
+\begin{algorithm}[htbp]
+\caption{Stage-1: RAG-CodeGen Pipeline}
+\label{alg:rag-codegen}
+\begin{algorithmic}[1]
+
+\REQUIRE Natural language query $q$, target language $l$, code pattern corpus $\mathcal{D}$, retrieval count $k$
+\ENSURE Initial code $c_0$, explanation $\xi$
+
+\STATE $(\iota, \Gamma) \leftarrow \text{IntentNormalize}(q)$
+\COMMENT{$\iota$: task class, $\Gamma$: inferred constraints}
+
+\STATE $\mathbf{v}_q \leftarrow \text{SBERT}(q)$
+\COMMENT{384-dim Sentence-BERT embedding}
+
+\STATE $\mathcal{R} \leftarrow \text{FAISS-Search}(\mathbf{v}_q, \mathcal{D}, k)$
+\COMMENT{Top-$k$ nearest code patterns}
+
+\STATE $\mathcal{R} \leftarrow \{r \in \mathcal{R} \mid r.\text{lang} = l\}$
+\COMMENT{Language filter}
+
+\STATE $P \leftarrow \text{BuildPrompt}(q, \mathcal{R}, \Gamma, l)$
+\COMMENT{Structured prompt with XML output tags}
+
+\STATE $\hat{y} \leftarrow \text{LLM}_{\text{gen}}(P)$
+\COMMENT{Llama-3.1-8B-Instruct via HuggingFace API}
+
+\STATE $(c_0, \xi) \leftarrow \text{ExtractOutput}(\hat{y})$
+\COMMENT{Parse \texttt{<CODE>}, \texttt{<EXPLANATION>} tags}
+
+\RETURN $(c_0, \xi)$
+
+\end{algorithmic}
+\end{algorithm}
+
+
+% ────────────────────────────────────────────────────────────
+%  ALGORITHM 2: Stage-2 EGRR Iterative Refinement Loop
+% ────────────────────────────────────────────────────────────
+
+\begin{algorithm}[htbp]
+\caption{Stage-2: Execution-Grounded Retrieval Refinement (EGRR)}
+\label{alg:egrr}
+\begin{algorithmic}[1]
+
+\REQUIRE Query $q$, initial code $c_0$, language $l$, corpus $\mathcal{D}$, iteration limit $K$, quality threshold $\tau$, optimisation threshold $\omega$
+\ENSURE Optimised code $c^{*}$, iteration history $\mathcal{H}$
+
+\STATE Initialise $\mathcal{S} \leftarrow \text{PipelineState}(q, c_0, l)$; \quad $\mathcal{H} \leftarrow \emptyset$
+
+\FOR{$i = 1$ \TO $K$}
+
+    \IF{$i = 1$}
+        \STATE \COMMENT{--- Baseline iteration (no novelty mechanisms) ---}
+        \STATE $\mathcal{Q}_{\text{ret}} \leftarrow \text{LLM}_{\text{query}}(q)$
+        \COMMENT{Generate 3--5 search queries from intent}
+        \STATE $\mathcal{C}_{\text{ctx}} \leftarrow \text{ParallelFAISS}(\mathcal{Q}_{\text{ret}}, \mathcal{D})$
+        \STATE $\mathcal{C}_{\text{ctx}} \leftarrow \text{Deduplicate}(\mathcal{C}_{\text{ctx}})$
+        \STATE $c_i \leftarrow \text{LLM}_{\text{gen}}(q, \mathcal{C}_{\text{ctx}})$
+        \STATE $\text{ValidateSyntax}(c_i)$
+        \COMMENT{AST-based syntax check}
+        \STATE $\text{Sanitize}(c_i)$
+        \COMMENT{Remove test contamination}
+
+    \ELSE
+        \STATE \COMMENT{--- Enhanced iteration (novelty introduced, $i \geq 2$) ---}
+        \STATE $\mathbf{SA}_i \leftarrow \text{StaticAnalysis}(c_{i-1})$
+        \COMMENT{Pylint + Radon + Bandit}
+        \STATE $\mathbf{DP}_i \leftarrow \text{DynamicProfile}(c_{i-1}, T_{i-1})$
+        \COMMENT{cProfile + memory\_profiler}
+        \STATE $\mathbf{AT}_i \leftarrow \text{AdversarialTest}(c_{i-1})$
+        \COMMENT{Hypothesis edge cases}
+
+        \STATE $P_i \leftarrow \text{BuildTargetedPrompt}(c_{i-1}, \mathbf{SA}_i, \mathbf{DP}_i, \mathbf{AT}_i, \mathcal{O}_i)$
+        \STATE $\mathbf{e}_i \leftarrow \text{AggregateEvidence}(E_{i-1}, \mathbf{SA}_i, \mathbf{DP}_i)$
+        \COMMENT{Algorithm~\ref{alg:evidence}}
+        \STATE $\mathcal{C}'_{\text{ctx}} \leftarrow \text{FAISS-Search}(\mathbf{e}_i, \mathcal{D})$
+        \COMMENT{Execution-driven re-retrieval}
+
+        \IF{$\text{HasCriticalIssues}(R_{i-1})$}
+            \STATE $c_i \leftarrow \text{LLM}_{\text{repair}}(c_{i-1}, P_i, \mathcal{C}'_{\text{ctx}})$
+            \COMMENT{Targeted fix}
+        \ELSE
+            \STATE $c_i \leftarrow \text{LLM}_{\text{optimise}}(c_{i-1}, P_i, \mathcal{C}'_{\text{ctx}})$
+            \COMMENT{Quality improvement}
+        \ENDIF
+
+        \STATE $\text{ValidateScope}(c_{i-1}, c_i)$
+        \COMMENT{Preserve function signatures}
+    \ENDIF
+
+    \STATE \COMMENT{--- Common: Execution, Review, Decision ---}
+    \STATE $T_i \leftarrow \text{GenerateTests}(c_i, q)$
+    \COMMENT{LLM-generated pytest suite}
+    \STATE $E_i \leftarrow \text{SandboxExec}(c_i, T_i)$
+    \COMMENT{subprocess + pytest + coverage.py}
+    \STATE $R_i \leftarrow \text{Review}(c_i, E_i)$
+    \COMMENT{4-axis evaluation}
+    \STATE $D_i \leftarrow \text{Decide}(R_i, i, K, \tau, \omega)$
+    \COMMENT{Algorithm~\ref{alg:decision}}
+    \STATE $\mathcal{H} \leftarrow \mathcal{H} \cup \{(c_i, E_i, R_i, D_i, \mathbf{SA}_i, \mathbf{DP}_i, \mathbf{AT}_i)\}$
+
+    \IF{$D_i \in \{\text{TERMINATE\_SUCCESS}, \text{TERMINATE\_MAX\_ITER}\}$}
+        \STATE \textbf{break}
+    \ENDIF
+
+\ENDFOR
+
+\STATE $c^{*} \leftarrow c_i$
+\RETURN $(c^{*}, \mathcal{H})$
+
+\end{algorithmic}
+\end{algorithm}
+
+
+% ────────────────────────────────────────────────────────────
+%  ALGORITHM 3: Evidence Aggregation & Execution-Driven Retrieval
+% ────────────────────────────────────────────────────────────
+
+\begin{algorithm}[htbp]
+\caption{Evidence Aggregation and Execution-Driven Retrieval}
+\label{alg:evidence}
+\begin{algorithmic}[1]
+
+\REQUIRE Execution result $E_{i-1}$, static analysis report $\mathbf{SA}$, dynamic profile report $\mathbf{DP}$, corpus $\mathcal{D}$, embedding model $\phi$
+\ENSURE Evidence query set $\mathbf{e}$, fresh context documents $\mathcal{C}'_{\text{ctx}}$
+
+\STATE $\mathbf{e} \leftarrow \emptyset$
+
+\STATE \COMMENT{--- Error-pattern extraction ---}
+\FORALL{failure $f \in E_{i-1}.\text{failures}$}
+    \STATE $\mathbf{e} \leftarrow \mathbf{e} \cup \{\text{ErrorToQuery}(f.\text{type}, f.\text{message})\}$
+\ENDFOR
+
+\STATE \COMMENT{--- Security-driven queries ---}
+\FORALL{issue $s \in \mathbf{SA}.\text{security\_issues}$}
+    \STATE $\mathbf{e} \leftarrow \mathbf{e} \cup \{\texttt{"secure alternative for "} \| \ s.\text{CWE}\}$
+\ENDFOR
+
+\STATE \COMMENT{--- Profiling-driven queries ---}
+\FORALL{hotspot $h \in \mathbf{DP}.\text{hotspot\_functions}$}
+    \STATE $\mathbf{e} \leftarrow \mathbf{e} \cup \{\texttt{"optimised pattern for "} \| \ h.\text{name}\}$
+\ENDFOR
+\FORALL{gap $g \in \mathbf{DP}.\text{coverage\_gaps}$}
+    \STATE $\mathbf{e} \leftarrow \mathbf{e} \cup \{\texttt{"test pattern for uncovered branch at line "} \| \ g\}$
+\ENDFOR
+
+\STATE \COMMENT{--- Retrieve fresh context ---}
+\STATE $\mathcal{C}'_{\text{ctx}} \leftarrow \emptyset$
+\FORALL{query $\hat{q} \in \mathbf{e}$}
+    \STATE $\mathbf{v}_{\hat{q}} \leftarrow \phi(\hat{q})$
+    \COMMENT{Embed evidence query}
+    \STATE $\mathcal{C}'_{\text{ctx}} \leftarrow \mathcal{C}'_{\text{ctx}} \cup \text{FAISS-Search}(\mathbf{v}_{\hat{q}}, \mathcal{D}, k)$
+\ENDFOR
+\STATE $\mathcal{C}'_{\text{ctx}} \leftarrow \text{Deduplicate}(\mathcal{C}'_{\text{ctx}})$
+\COMMENT{Exclude previously retrieved patterns}
+
+\RETURN $(\mathbf{e}, \mathcal{C}'_{\text{ctx}})$
+
+\end{algorithmic}
+\end{algorithm}
+
+
+% ────────────────────────────────────────────────────────────
+%  ALGORITHM 4: Multi-Objective Decision Mechanism
+% ────────────────────────────────────────────────────────────
+
+\begin{algorithm}[htbp]
+\caption{Multi-Objective Decision Mechanism}
+\label{alg:decision}
+\begin{algorithmic}[1]
+
+\REQUIRE Review $R_i$, iteration index $i$, limit $K$, quality threshold $\tau$, optimisation threshold $\omega$
+\ENSURE Decision $D_i$, repair strategy $\sigma$
+
+\STATE \COMMENT{Priority: correctness $\succ$ security $\succ$ performance $\succ$ maintainability}
+
+\IF{$i \geq K$}
+    \IF{$\text{HasCriticalIssues}(R_i)$}
+        \RETURN $(\text{TERMINATE\_MAX\_ITER}, \sigma_{\text{flagged}})$
+    \ELSE
+        \RETURN $(\text{TERMINATE\_SUCCESS}, \varnothing)$
+    \ENDIF
+\ENDIF
+
+\IF{$\text{HasCriticalIssues}(R_i)$}
+    \STATE $\sigma \leftarrow \text{RepairStrategy}(\text{mode} = \text{TARGETED\_REPAIR}, R_i.\text{critical\_issues})$
+    \RETURN $(\text{CONTINUE}, \sigma)$
+\ENDIF
+
+\IF{$R_i.\text{optimisation\_score} < \omega$}
+    \STATE $\mathcal{O}_i \leftarrow \text{SelectObjective}(i)$
+    \COMMENT{Progressive priority (below)}
+    \STATE $\sigma \leftarrow \text{RepairStrategy}(\text{mode} = \text{OPTIMISE}, \mathcal{O}_i, R_i.\text{optimisation\_gaps})$
+    \RETURN $(\text{CONTINUE}, \sigma)$
+\ENDIF
+
+\RETURN $(\text{TERMINATE\_SUCCESS}, \varnothing)$
+
+\STATE
+\STATE \COMMENT{--- Progressive Objective Selection ---}
+\STATE \textbf{function} $\text{SelectObjective}(i)$:
+\IF{$i = 2$}
+    \RETURN CORRECTNESS \COMMENT{Fix remaining test failures}
+\ELSIF{$i = 3$}
+    \RETURN PERFORMANCE \COMMENT{Eliminate hotspots, reduce complexity}
+\ELSIF{$i = 4$}
+    \RETURN SECURITY \COMMENT{Resolve Bandit findings}
+\ELSE
+    \RETURN MAINTAINABILITY \COMMENT{Improve lint scores and style}
+\ENDIF
+
+\end{algorithmic}
+\end{algorithm}

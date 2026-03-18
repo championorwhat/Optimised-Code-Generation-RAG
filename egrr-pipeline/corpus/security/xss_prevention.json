@@ -1,0 +1,10 @@
+{
+    "id": "sec-xss-001",
+    "code": "import html\nfrom typing import Any\nimport re\n\ndef escape_html(user_input: str) -> str:\n    \"\"\"EGRR_PATTERN: Escape HTML to prevent XSS.\"\"\"\n    return html.escape(user_input, quote=True)\n\ndef sanitize_for_html_attribute(value: str) -> str:\n    \"\"\"EGRR_PATTERN: Sanitize value for use in HTML attribute.\"\"\"\n    # Remove all non-alphanumeric characters except safe ones\n    sanitized = re.sub(r'[^a-zA-Z0-9\\s\\-_.]', '', value)\n    return html.escape(sanitized, quote=True)\n\ndef safe_render_user_content(content: str) -> str:\n    \"\"\"EGRR_PATTERN: Render user content safely with limited HTML.\"\"\"\n    # Escape everything first\n    escaped = html.escape(content, quote=True)\n    \n    # Allow only specific safe tags (whitelist approach)\n    allowed_tags = ['b', 'i', 'u', 'br']\n    for tag in allowed_tags:\n        escaped = escaped.replace(f'&lt;{tag}&gt;', f'<{tag}>')\n        escaped = escaped.replace(f'&lt;/{tag}&gt;', f'</{tag}>')\n    \n    return escaped\n\ndef create_safe_link(url: str, text: str) -> str:\n    \"\"\"EGRR_PATTERN: Create safe HTML link with proper escaping.\"\"\"\n    # Validate URL scheme\n    if not url.startswith(('http://', 'https://', '/')):\n        raise ValueError('Invalid URL scheme')\n    \n    safe_url = html.escape(url, quote=True)\n    safe_text = html.escape(text, quote=True)\n    return f'<a href=\"{safe_url}\" rel=\"noopener noreferrer\">{safe_text}</a>'",
+    "language": "python",
+    "explanation": "Prevent Cross-Site Scripting (XSS) by escaping HTML entities in user input before rendering. Use html.escape() for output encoding and validate/sanitize input.",
+    "tags": ["security", "xss", "cross-site-scripting", "html-escape", "sanitization"],
+    "error_signatures": ["XSS", "cross-site scripting", "unsanitized output", "html injection"],
+    "vulnerability": "Cross-Site Scripting (CWE-79)",
+    "broken_example": "return f'<div>{user_input}</div>'"
+}

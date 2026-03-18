@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 340" width="1100" height="340"
+     font-family="'Times New Roman', Times, serif">
+
+  <!-- Background -->
+  <rect width="1100" height="340" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a2e"
+        letter-spacing="0.2">TABLE I: Benchmark Evaluation on HumanEval and MBPP</text>
+
+  <!-- ============ TABLE STRUCTURE ============ -->
+  <!-- Columns: Method(240) | P@1-HE(110) | P@5-HE(110) | P@1-MB(110) | Runtime(120) | Memory(130) | Vuln(120) -->
+  <!-- Col x-starts: 60, 300, 410, 520, 630, 750, 880 -->
+  <!-- Col x-ends:   300, 410, 520, 630, 750, 880, 1000 -->
+
+  <!-- Header row: y=50..88 -->
+  <rect x="60" y="50" width="940" height="40" fill="#e8edf4"/>
+  <!-- Double top line (IEEE style) -->
+  <line x1="60" y1="50" x2="1000" y2="50" stroke="#1a2840" stroke-width="2"/>
+  <line x1="60" y1="54" x2="1000" y2="54" stroke="#1a2840" stroke-width="0.8"/>
+  <!-- Header bottom line -->
+  <line x1="60" y1="90" x2="1000" y2="90" stroke="#1a2840" stroke-width="1.2"/>
+
+  <!-- Header text -->
+  <text x="180" y="75" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">Method</text>
+
+  <text x="355" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Pass@1</text>
+  <text x="355" y="82" text-anchor="middle" font-size="9.5" fill="#3a4a60">(HumanEval)</text>
+
+  <text x="465" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Pass@5</text>
+  <text x="465" y="82" text-anchor="middle" font-size="9.5" fill="#3a4a60">(HumanEval)</text>
+
+  <text x="575" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Pass@1</text>
+  <text x="575" y="82" text-anchor="middle" font-size="9.5" fill="#3a4a60">(MBPP)</text>
+
+  <text x="690" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Avg. Runtime</text>
+  <text x="690" y="82" text-anchor="middle" font-size="9.5" fill="#3a4a60">(ms)</text>
+
+  <text x="815" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Peak Memory</text>
+  <text x="815" y="82" text-anchor="middle" font-size="9.5" fill="#3a4a60">(MB)</text>
+
+  <text x="940" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Vulnerability</text>
+  <text x="940" y="82" text-anchor="middle" font-size="9.5" fill="#3a4a60">Count</text>
+
+  <!-- ============ DATA ROWS ============ -->
+
+  <!-- Row 1: Zero-Shot LLM Baseline — y=94..132 -->
+  <text x="70" y="116" font-size="11.5" fill="#2d3748">Zero-Shot LLM Baseline</text>
+  <text x="355" y="116" text-anchor="middle" font-size="11.5" fill="#2d3748">47.6</text>
+  <text x="465" y="116" text-anchor="middle" font-size="11.5" fill="#2d3748">62.1</text>
+  <text x="575" y="116" text-anchor="middle" font-size="11.5" fill="#2d3748">52.3</text>
+  <text x="690" y="116" text-anchor="middle" font-size="11.5" fill="#2d3748">342</text>
+  <text x="815" y="116" text-anchor="middle" font-size="11.5" fill="#2d3748">128.4</text>
+  <text x="940" y="116" text-anchor="middle" font-size="11.5" fill="#2d3748">4.2</text>
+  <line x1="60" y1="132" x2="1000" y2="132" stroke="#c8d0da" stroke-width="0.5"/>
+
+  <!-- Row 2: RAG-CodeGen — y=136..170 -->
+  <text x="70" y="156" font-size="11.5" fill="#2d3748">RAG-CodeGen</text>
+  <text x="355" y="156" text-anchor="middle" font-size="11.5" fill="#2d3748">58.2</text>
+  <text x="465" y="156" text-anchor="middle" font-size="11.5" fill="#2d3748">71.8</text>
+  <text x="575" y="156" text-anchor="middle" font-size="11.5" fill="#2d3748">61.5</text>
+  <text x="690" y="156" text-anchor="middle" font-size="11.5" fill="#2d3748">285</text>
+  <text x="815" y="156" text-anchor="middle" font-size="11.5" fill="#2d3748">114.7</text>
+  <text x="940" y="156" text-anchor="middle" font-size="11.5" fill="#2d3748">3.1</text>
+  <line x1="60" y1="172" x2="1000" y2="172" stroke="#c8d0da" stroke-width="0.5"/>
+
+  <!-- Row 3: EGRR Iteration 1 — y=176..210 -->
+  <text x="70" y="196" font-size="11.5" fill="#2d3748">EGRR Iteration 1</text>
+  <text x="355" y="196" text-anchor="middle" font-size="11.5" fill="#2d3748">63.7</text>
+  <text x="465" y="196" text-anchor="middle" font-size="11.5" fill="#2d3748">76.4</text>
+  <text x="575" y="196" text-anchor="middle" font-size="11.5" fill="#2d3748">67.8</text>
+  <text x="690" y="196" text-anchor="middle" font-size="11.5" fill="#2d3748">218</text>
+  <text x="815" y="196" text-anchor="middle" font-size="11.5" fill="#2d3748">98.2</text>
+  <text x="940" y="196" text-anchor="middle" font-size="11.5" fill="#2d3748">1.8</text>
+  <line x1="60" y1="212" x2="1000" y2="212" stroke="#c8d0da" stroke-width="0.5"/>
+
+  <!-- Row 4: Full RAG + EGRR (proposed) — y=216..250 -->
+  <rect x="60" y="214" width="940" height="40" fill="#f0f5fa"/>
+  <text x="70" y="238" font-size="11.5" font-weight="700" fill="#1a2840">Full RAG + EGRR (Proposed)</text>
+  <text x="355" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">72.4</text>
+  <text x="465" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">85.3</text>
+  <text x="575" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">74.1</text>
+  <text x="690" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">156</text>
+  <text x="815" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">82.6</text>
+  <text x="940" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">0.4</text>
+
+  <!-- Double bottom line (IEEE style) -->
+  <line x1="60" y1="254" x2="1000" y2="254" stroke="#1a2840" stroke-width="0.8"/>
+  <line x1="60" y1="258" x2="1000" y2="258" stroke="#1a2840" stroke-width="2"/>
+
+  <!-- Vertical column dividers (thin, data area only) -->
+  <line x1="300" y1="50" x2="300" y2="258" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="410" y1="50" x2="410" y2="258" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="520" y1="50" x2="520" y2="258" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="630" y1="50" x2="630" y2="258" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="750" y1="50" x2="750" y2="258" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="880" y1="50" x2="880" y2="258" stroke="#c8d0da" stroke-width="0.4"/>
+
+  <!-- ============ IMPROVEMENT FOOTNOTE ============ -->
+  <text x="60" y="284" font-size="10" fill="#4a5a6a">Best results are shown in
+    <tspan font-weight="700">bold</tspan>. The proposed method (Full RAG + EGRR) achieves
+  </text>
+  <text x="60" y="298" font-size="10" fill="#4a5a6a">+52.1% Pass@1 (HumanEval), +37.4% Pass@5 (HumanEval), and 90.5% reduction in vulnerabilities over the Zero-Shot baseline.</text>
+
+  <!-- Figure label -->
+  <text x="550" y="328" text-anchor="middle" font-size="10.5" fill="#4a5a6a" font-style="italic">
+    Evaluation conducted on HumanEval (164 problems) and MBPP (500 problems) benchmarks.
+  </text>
+</svg>

@@ -1,3 +1,6 @@
+fastapi
+uvicorn[standard]
+pydantic
 huggingface_hub
 sentence-transformers
 faiss-cpu

@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 940" width="1480" height="940"
+     font-family="'Times New Roman', Times, serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#3d5a80"/>
+    </marker>
+    <marker id="arr-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#2a7040"/>
+    </marker>
+    <marker id="arr-r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#994444"/>
+    </marker>
+    <marker id="arr-pri" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#6a7b8d"/>
+    </marker>
+    <filter id="sh" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-color="#00000012"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1480" height="940" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="620" y="38" text-anchor="middle" font-size="19" font-weight="700" fill="#1a2840"
+        letter-spacing="0.4">Execution-Grounded Retrieval Refinement (EGRR) Optimization Loop</text>
+
+  <!-- Background loop ellipse (subtle) -->
+  <ellipse cx="600" cy="510" rx="400" ry="300" fill="none" stroke="#c8d6e6" stroke-width="1.2"
+           stroke-dasharray="8,5" opacity="0.6"/>
+
+  <!-- ============ INPUT (left) ============ -->
+  <rect x="15" y="182" width="160" height="56" rx="3" fill="#f0f4f8" stroke="#8090a0"
+        stroke-width="1.1" filter="url(#sh)"/>
+  <text x="95" y="206" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1a2840">Initial Code c&#x2080;</text>
+  <text x="95" y="222" text-anchor="middle" font-size="10.5" fill="#5a6a80">(from Stage 1)</text>
+  <text x="95" y="170" text-anchor="middle" font-size="11" fill="#5a6a80" font-style="italic">Input</text>
+  <!-- Arrow input → Exec Sandbox -->
+  <line x1="175" y1="210" x2="483" y2="210" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- ============ LOOP BLOCKS (clockwise) ============ -->
+
+  <!-- 1. Execution Sandbox (top) -->
+  <rect x="495" y="182" width="216" height="58" rx="3" fill="#dce6f2" stroke="#6a8bb5"
+        stroke-width="1.2" filter="url(#sh)"/>
+  <text x="603" y="207" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2840">Execution Sandbox</text>
+  <text x="603" y="225" text-anchor="middle" font-size="10" fill="#4a6080" font-style="italic">pytest + coverage</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="711" y1="220" x2="800" y2="310" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- 2. Static Analysis (upper-right) -->
+  <rect x="802" y="302" width="216" height="58" rx="3" fill="#dce6f2" stroke="#6a8bb5"
+        stroke-width="1.2" filter="url(#sh)"/>
+  <text x="910" y="327" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2840">Static Analysis</text>
+  <text x="910" y="345" text-anchor="middle" font-size="10" fill="#4a6080" font-style="italic">Pylint, Radon, Bandit</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="930" y1="360" x2="958" y2="498" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- 3. Dynamic Profiling (right) -->
+  <rect x="852" y="500" width="216" height="58" rx="3" fill="#dce6f2" stroke="#6a8bb5"
+        stroke-width="1.2" filter="url(#sh)"/>
+  <text x="960" y="525" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2840">Dynamic Profiling</text>
+  <text x="960" y="543" text-anchor="middle" font-size="10" fill="#4a6080" font-style="italic">cProfile, memory-profiler</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="940" y1="558" x2="858" y2="688" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- 4. Adversarial Testing (lower-right) -->
+  <rect x="732" y="690" width="216" height="58" rx="3" fill="#dce6f2" stroke="#6a8bb5"
+        stroke-width="1.2" filter="url(#sh)"/>
+  <text x="840" y="715" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2840">Adversarial Testing</text>
+  <text x="840" y="733" text-anchor="middle" font-size="10" fill="#4a6080" font-style="italic">Hypothesis property-based testing</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="732" y1="730" x2="660" y2="772" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- 5. Evidence Aggregation (bottom) -->
+  <rect x="442" y="770" width="216" height="58" rx="3" fill="#d0dced" stroke="#5a7da8"
+        stroke-width="1.3" filter="url(#sh)"/>
+  <text x="550" y="795" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2840">Evidence Aggregation</text>
+  <text x="550" y="846" text-anchor="middle" font-size="11.5" fill="#2a3a50" font-style="italic">e&#x1D62; = E(c&#x1D62;&#x208B;&#x2081;, T)</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="442" y1="800" x2="358" y2="738" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- 6. Execution-Driven Re-Retrieval (lower-left) -->
+  <rect x="140" y="680" width="216" height="58" rx="3" fill="#d0dced" stroke="#5a7da8"
+        stroke-width="1.3" filter="url(#sh)"/>
+  <text x="248" y="702" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a2840">Execution-Driven</text>
+  <text x="248" y="718" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a2840">Re-Retrieval</text>
+  <text x="248" y="733" text-anchor="middle" font-size="10" fill="#4a6080" font-style="italic">(FAISS Vector Index)</text>
+
+  <!-- FAISS Cylinder (left of block 6) -->
+  <g transform="translate(58, 688)">
+    <rect x="0" y="10" width="50" height="38" fill="#b8cce0" stroke="#5a7da8" stroke-width="1.1"/>
+    <ellipse cx="25" cy="12" rx="25" ry="10" fill="#d0dced" stroke="#5a7da8" stroke-width="1.1"/>
+    <path d="M 0,48 A 25,10 0 0,0 50,48" fill="#b8cce0" stroke="#5a7da8" stroke-width="1.1"/>
+    <text x="25" y="36" text-anchor="middle" font-size="8.5" fill="#1a2840" font-weight="600">FAISS</text>
+  </g>
+  <line x1="108" y1="718" x2="138" y2="718" stroke="#5a7da8" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Arrow 6→7 -->
+  <line x1="248" y1="680" x2="218" y2="508" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- 7. Refinement LLM (left) -->
+  <rect x="102" y="450" width="216" height="58" rx="3" fill="#c8d8ea" stroke="#4a6e96"
+        stroke-width="1.3" filter="url(#sh)"/>
+  <text x="210" y="473" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2840">Refinement LLM</text>
+  <text x="210" y="491" text-anchor="middle" font-size="10" fill="#4a6080" font-style="italic">(DeepSeek-Coder)</text>
+  <text x="210" y="440" text-anchor="middle" font-size="12" fill="#2a3a50" font-style="italic">c&#x1D62; = R(c&#x1D62;&#x208B;&#x2081;, e&#x1D62;, q)</text>
+
+  <!-- Arrow 7 → Convergence Diamond -->
+  <line x1="210" y1="450" x2="350" y2="318" stroke="#3d5a80" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- ============ CONVERGENCE CHECK DIAMOND ============ -->
+  <polygon points="350,248 420,290 350,332 280,290" fill="#e0e8f2" stroke="#4a6e96" stroke-width="1.3"/>
+  <text x="350" y="286" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Convergence</text>
+  <text x="350" y="300" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Check</text>
+
+  <!-- Diamond → Exec Sandbox ("No" / iterate) -->
+  <line x1="420" y1="280" x2="493" y2="230" stroke="#994444" stroke-width="1.3" marker-end="url(#arr-r)"/>
+  <text x="470" y="248" text-anchor="middle" font-size="10" fill="#994444" font-weight="600">No</text>
+
+  <!-- Diamond → Final Output ("Yes" / converged) -->
+  <path d="M 350,248 L 350,80 L 1028,80 L 1028,116" fill="none" stroke="#2a7040" stroke-width="1.3" marker-end="url(#arr-g)"/>
+  <text x="365" y="170" text-anchor="start" font-size="10" fill="#2a7040" font-weight="600">Yes</text>
+
+  <!-- ============ OUTPUT (right) ============ -->
+  <rect x="1030" y="116" width="220" height="58" rx="3" fill="#e4f2e8" stroke="#4a8a5a"
+        stroke-width="1.2" filter="url(#sh)"/>
+  <text x="1140" y="140" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a3a20">Final Optimized</text>
+  <text x="1140" y="158" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a3a20">Code c*</text>
+  <text x="1140" y="100" text-anchor="middle" font-size="11" fill="#4a8a5a" font-style="italic">Output</text>
+
+  <!-- ============ PRIORITY STACK (far right) ============ -->
+  <rect x="1230" y="330" width="210" height="380" rx="4" fill="#f5f7fa" stroke="#9aacbc"
+        stroke-width="1.1" filter="url(#sh)"/>
+  <text x="1335" y="362" text-anchor="middle" font-size="12" font-weight="700" fill="#1a2840">Multi-Objective</text>
+  <text x="1335" y="378" text-anchor="middle" font-size="12" font-weight="700" fill="#1a2840">Priority Ordering</text>
+
+  <!-- Priority 1: Correctness -->
+  <rect x="1260" y="400" width="150" height="38" rx="3" fill="#dce6f2" stroke="#6a8bb5" stroke-width="1"/>
+  <text x="1335" y="424" text-anchor="middle" font-size="12" font-weight="600" fill="#1a2840">Correctness</text>
+  <line x1="1335" y1="438" x2="1335" y2="462" stroke="#6a7b8d" stroke-width="1.2" marker-end="url(#arr-pri)"/>
+
+  <!-- Priority 2: Security -->
+  <rect x="1260" y="468" width="150" height="38" rx="3" fill="#dce6f2" stroke="#6a8bb5" stroke-width="1"/>
+  <text x="1335" y="492" text-anchor="middle" font-size="12" font-weight="600" fill="#1a2840">Security</text>
+  <line x1="1335" y1="506" x2="1335" y2="530" stroke="#6a7b8d" stroke-width="1.2" marker-end="url(#arr-pri)"/>
+
+  <!-- Priority 3: Performance -->
+  <rect x="1260" y="536" width="150" height="38" rx="3" fill="#dce6f2" stroke="#6a8bb5" stroke-width="1"/>
+  <text x="1335" y="560" text-anchor="middle" font-size="12" font-weight="600" fill="#1a2840">Performance</text>
+  <line x1="1335" y1="574" x2="1335" y2="598" stroke="#6a7b8d" stroke-width="1.2" marker-end="url(#arr-pri)"/>
+
+  <!-- Priority 4: Maintainability -->
+  <rect x="1260" y="604" width="150" height="38" rx="3" fill="#dce6f2" stroke="#6a8bb5" stroke-width="1"/>
+  <text x="1335" y="628" text-anchor="middle" font-size="12" font-weight="600" fill="#1a2840">Maintainability</text>
+
+  <!-- Brace / label connecting priority stack to loop -->
+  <line x1="1230" y1="520" x2="1080" y2="520" stroke="#9aacbc" stroke-width="0.8" stroke-dasharray="5,4"/>
+
+  <!-- ============ FIGURE CAPTION ============ -->
+  <text x="620" y="920" text-anchor="middle" font-size="12" fill="#3a4a5a">
+    <tspan font-weight="700">Fig. 3.</tspan>
+    <tspan> EGRR iterative optimization loop with multi-objective priority ordering and convergence control.</tspan>
+  </text>
+</svg>

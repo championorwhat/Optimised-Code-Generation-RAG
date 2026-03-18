@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 390" width="620" height="390"
+     font-family="'Times New Roman', Times, serif">
+
+  <!-- Background -->
+  <rect width="620" height="390" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="310" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a2e"
+        letter-spacing="0.2">TABLE V: Latency Breakdown Across Pipeline Stages</text>
+
+  <!-- Double top rule (IEEE) -->
+  <line x1="60" y1="50" x2="560" y2="50" stroke="#1a2840" stroke-width="2"/>
+  <line x1="60" y1="54" x2="560" y2="54" stroke="#1a2840" stroke-width="0.8"/>
+
+  <!-- Header background -->
+  <rect x="60" y="56" width="500" height="36" fill="#e8edf4"/>
+
+  <!-- Header labels -->
+  <text x="220" y="79" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">Pipeline Stage</text>
+  <text x="470" y="79" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">Average Latency (ms)</text>
+
+  <!-- Header bottom rule -->
+  <line x1="60" y1="92" x2="560" y2="92" stroke="#1a2840" stroke-width="1.2"/>
+
+  <!-- Column divider -->
+  <line x1="360" y1="50" x2="360" y2="310" stroke="#c8d0da" stroke-width="0.4"/>
+
+  <!-- ============ DATA ROWS ============ -->
+
+  <!-- Row 1: Intent Normalization -->
+  <text x="70" y="116" font-size="11.5" fill="#2d3748">Intent Normalization</text>
+  <text x="470" y="116" text-anchor="middle" font-size="11.5" fill="#2d3748">12</text>
+  <!-- Mini bar -->
+  <rect x="380" y="108" width="12" height="12" rx="1" fill="#c8d8e8" opacity="0.6"/>
+  <line x1="60" y1="130" x2="560" y2="130" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 2: Semantic Retrieval -->
+  <text x="70" y="150" font-size="11.5" fill="#2d3748">Semantic Retrieval</text>
+  <text x="470" y="150" text-anchor="middle" font-size="11.5" fill="#2d3748">45</text>
+  <rect x="380" y="142" width="28" height="12" rx="1" fill="#a8c0d8" opacity="0.6"/>
+  <line x1="60" y1="164" x2="560" y2="164" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 3: Initial Code Generation (longest — LLM inference) -->
+  <text x="70" y="184" font-size="11.5" fill="#2d3748">Initial Code Generation</text>
+  <text x="470" y="184" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">2340</text>
+  <rect x="380" y="176" width="72" height="12" rx="1" fill="#2b5797" opacity="0.7"/>
+  <line x1="60" y1="198" x2="560" y2="198" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 4: Execution Sandbox -->
+  <text x="70" y="218" font-size="11.5" fill="#2d3748">Execution Sandbox</text>
+  <text x="470" y="218" text-anchor="middle" font-size="11.5" fill="#2d3748">860</text>
+  <rect x="380" y="210" width="52" height="12" rx="1" fill="#5b86b8" opacity="0.7"/>
+  <line x1="60" y1="232" x2="560" y2="232" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 5: Static Analysis -->
+  <text x="70" y="252" font-size="11.5" fill="#2d3748">Static Analysis</text>
+  <text x="470" y="252" text-anchor="middle" font-size="11.5" fill="#2d3748">180</text>
+  <rect x="380" y="244" width="36" height="12" rx="1" fill="#8aaccc" opacity="0.6"/>
+  <line x1="60" y1="266" x2="560" y2="266" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 6: Dynamic Profiling -->
+  <text x="70" y="286" font-size="11.5" fill="#2d3748">Dynamic Profiling</text>
+  <text x="470" y="286" text-anchor="middle" font-size="11.5" fill="#2d3748">320</text>
+  <rect x="380" y="278" width="42" height="12" rx="1" fill="#6a98c0" opacity="0.6"/>
+  <line x1="60" y1="300" x2="560" y2="300" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 7: Refinement Generation -->
+  <rect x="60" y="302" width="500" height="8" fill="#f0f5fa"/>
+  <text x="70" y="322" font-size="11.5" fill="#2d3748">Refinement Generation</text>
+  <text x="470" y="322" text-anchor="middle" font-size="11.5" fill="#2d3748">1850</text>
+  <rect x="380" y="314" width="66" height="12" rx="1" fill="#3a6898" opacity="0.7"/>
+
+  <!-- Double bottom rule (IEEE) -->
+  <line x1="60" y1="336" x2="560" y2="336" stroke="#1a2840" stroke-width="0.8"/>
+  <line x1="60" y1="340" x2="560" y2="340" stroke="#1a2840" stroke-width="2"/>
+
+  <!-- ============ FOOTNOTES ============ -->
+  <text x="60" y="362" font-size="10" fill="#4a5a6a">LLM inference stages (Initial Code Generation, Refinement Generation) dominate total latency.</text>
+  <text x="60" y="378" font-size="10" fill="#4a5a6a">Measured as per-stage averages over a single EGRR iteration. Total per-iteration latency ≈ 5,607 ms.</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+    "id": "py-val-neg-001",
+    "code": "def check_non_negative(val, param_name):\n    \"\"\"EGRR_VALIDATION: Ensures the value is not negative.\"\"\"\n    if val < 0:\n        raise ValueError(f\"{param_name} cannot be negative. Received: {val}\")",
+    "language": "python",
+    "explanation": "Standard pattern for input validation to prevent negative values in math functions.",
+    "tags": [
+        "validation",
+        "error_handling",
+        "valueerror",
+        "non_negative"
+    ]
+}
