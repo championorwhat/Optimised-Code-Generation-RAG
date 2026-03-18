@@ -156,8 +156,17 @@ class SandboxRunner:
                     stdout="",
                     stderr="Test execution timed out",
                     exit_code=124,
-                    test_results=None,
-                    coverage=None
+                    test_results=TestRunMetrics(passed=0, failed=1, failures=["Test execution timed out"]),
+                    coverage=CoverageResult(line_coverage=0.0, uncovered_lines=[])
+                )
+            except Exception as e:
+                 return ExecutionResult(
+                    status=ExecutionStatus.ERROR,
+                    stdout="",
+                    stderr=f"Sandbox execution error: {str(e)}",
+                    exit_code=1,
+                    test_results=TestRunMetrics(passed=0, failed=1, failures=[f"Sandbox error: {str(e)}"]),
+                    coverage=CoverageResult(line_coverage=0.0, uncovered_lines=[])
                 )
 
     def _parse_pytest_output(self, stdout: str, stderr: str) -> TestRunMetrics:

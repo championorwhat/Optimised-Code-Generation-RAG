@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 560" width="1050" height="560"
+     font-family="'Times New Roman', Times, serif">
+
+  <!-- Background -->
+  <rect width="1050" height="560" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="530" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a2e"
+        letter-spacing="0.3">Performance Comparison Across Code Generation Frameworks</text>
+
+  <!-- ============ PLOT AREA ============ -->
+  <!-- Plot: x=110..950, y=55..430 -->
+  <rect x="110" y="55" width="840" height="375" fill="none" stroke="#b0b8c4" stroke-width="1"/>
+
+  <!-- Horizontal gridlines -->
+  <!-- y = 430 - (val * 375):  0.0→430, 0.2→355, 0.4→280, 0.6→205, 0.8→130, 1.0→55 -->
+  <line x1="110" y1="355" x2="950" y2="355" stroke="#e6e9ed" stroke-width="0.7"/>
+  <line x1="110" y1="280" x2="950" y2="280" stroke="#e6e9ed" stroke-width="0.7"/>
+  <line x1="110" y1="205" x2="950" y2="205" stroke="#e6e9ed" stroke-width="0.7"/>
+  <line x1="110" y1="130" x2="950" y2="130" stroke="#e6e9ed" stroke-width="0.7"/>
+
+  <!-- Y-axis tick labels -->
+  <text x="103" y="434" text-anchor="end" font-size="11" fill="#4a5568">0.0</text>
+  <text x="103" y="359" text-anchor="end" font-size="11" fill="#4a5568">0.2</text>
+  <text x="103" y="284" text-anchor="end" font-size="11" fill="#4a5568">0.4</text>
+  <text x="103" y="209" text-anchor="end" font-size="11" fill="#4a5568">0.6</text>
+  <text x="103" y="134" text-anchor="end" font-size="11" fill="#4a5568">0.8</text>
+  <text x="103" y="59"  text-anchor="end" font-size="11" fill="#4a5568">1.0</text>
+
+  <!-- Y-axis tick marks -->
+  <line x1="106" y1="430" x2="110" y2="430" stroke="#4a5568" stroke-width="1"/>
+  <line x1="106" y1="355" x2="110" y2="355" stroke="#4a5568" stroke-width="1"/>
+  <line x1="106" y1="280" x2="110" y2="280" stroke="#4a5568" stroke-width="1"/>
+  <line x1="106" y1="205" x2="110" y2="205" stroke="#4a5568" stroke-width="1"/>
+  <line x1="106" y1="130" x2="110" y2="130" stroke="#4a5568" stroke-width="1"/>
+  <line x1="106" y1="55"  x2="110" y2="55"  stroke="#4a5568" stroke-width="1"/>
+
+  <!-- Axis labels -->
+  <text x="530" y="492" text-anchor="middle" font-size="13.5" font-weight="600" fill="#2d3748">Code Generation Method</text>
+  <text x="36" y="242" text-anchor="middle" font-size="13.5" font-weight="600" fill="#2d3748"
+        transform="rotate(-90, 36, 242)">Normalized Performance Score</text>
+
+  <!-- ============ BARS ============ -->
+  <!-- Group centers: 215, 420, 625, 830 -->
+  <!-- Bar width=34, gap=6, total 4 bars = 154px, half=77 -->
+  <!-- Bars at: center-77, center-37, center+3, center+43 -->
+  <!-- Colors: Runtime=#2b5797, Complexity=#5b86b8, Vuln=#8aaccc, PassRate=#2a8a6a -->
+
+  <!-- Data (normalized):
+       ZeroShot: R=0.95, Cx=0.88, V=0.82, P=0.30
+       RAG:      R=0.78, Cx=0.72, V=0.65, P=0.55
+       TestDrv:  R=0.52, Cx=0.45, V=0.35, P=0.72
+       EGRR:     R=0.25, Cx=0.20, V=0.08, P=0.95
+       y = 430 - val*375,  h = val*375   -->
+
+  <!-- Group 1: Zero-Shot LLM (center=215) -->
+  <rect x="138" y="74"  width="34" height="356" rx="1" fill="#2b5797"/>
+  <rect x="178" y="100" width="34" height="330" rx="1" fill="#5b86b8"/>
+  <rect x="218" y="123" width="34" height="307" rx="1" fill="#8aaccc"/>
+  <rect x="258" y="318" width="34" height="112" rx="1" fill="#2a8a6a"/>
+  <!-- Group label -->
+  <text x="215" y="450" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2d3748">Zero-Shot</text>
+  <text x="215" y="464" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2d3748">LLM</text>
+
+  <!-- Group separator -->
+  <line x1="318" y1="430" x2="318" y2="435" stroke="#b0b8c4" stroke-width="0.6"/>
+
+  <!-- Group 2: RAG-CodeGen (center=420) -->
+  <rect x="343" y="138" width="34" height="292" rx="1" fill="#2b5797"/>
+  <rect x="383" y="160" width="34" height="270" rx="1" fill="#5b86b8"/>
+  <rect x="423" y="186" width="34" height="244" rx="1" fill="#8aaccc"/>
+  <rect x="463" y="224" width="34" height="206" rx="1" fill="#2a8a6a"/>
+  <!-- Group label -->
+  <text x="420" y="450" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2d3748">RAG-</text>
+  <text x="420" y="464" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2d3748">CodeGen</text>
+
+  <line x1="523" y1="430" x2="523" y2="435" stroke="#b0b8c4" stroke-width="0.6"/>
+
+  <!-- Group 3: Test-Driven Refinement (center=625) -->
+  <rect x="548" y="235" width="34" height="195" rx="1" fill="#2b5797"/>
+  <rect x="588" y="261" width="34" height="169" rx="1" fill="#5b86b8"/>
+  <rect x="628" y="299" width="34" height="131" rx="1" fill="#8aaccc"/>
+  <rect x="668" y="160" width="34" height="270" rx="1" fill="#2a8a6a"/>
+  <!-- Group label -->
+  <text x="625" y="450" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2d3748">Test-Driven</text>
+  <text x="625" y="464" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2d3748">Refinement</text>
+
+  <line x1="728" y1="430" x2="728" y2="435" stroke="#b0b8c4" stroke-width="0.6"/>
+
+  <!-- Group 4: Full EGRR System (center=830) -->
+  <rect x="753" y="336" width="34" height="94"  rx="1" fill="#2b5797"/>
+  <rect x="793" y="355" width="34" height="75"  rx="1" fill="#5b86b8"/>
+  <rect x="833" y="400" width="34" height="30"  rx="1" fill="#8aaccc"/>
+  <rect x="873" y="74"  width="34" height="356" rx="1" fill="#2a8a6a"/>
+  <!-- Group label -->
+  <text x="830" y="450" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">Full EGRR</text>
+  <text x="830" y="464" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">System</text>
+
+  <!-- ============ LEGEND (upper-right) ============ -->
+  <rect x="780" y="62" width="160" height="105" rx="3" fill="#ffffffee" stroke="#c0c8d2" stroke-width="0.8"/>
+
+  <rect x="790" y="72" width="16" height="12" rx="2" fill="#2b5797"/>
+  <text x="812" y="83" font-size="11" fill="#2d3748">Runtime (ms)</text>
+
+  <rect x="790" y="92" width="16" height="12" rx="2" fill="#5b86b8"/>
+  <text x="812" y="103" font-size="11" fill="#2d3748">Complexity</text>
+
+  <rect x="790" y="112" width="16" height="12" rx="2" fill="#8aaccc"/>
+  <text x="812" y="123" font-size="11" fill="#2d3748">Vulnerabilities</text>
+
+  <rect x="790" y="132" width="16" height="12" rx="2" fill="#2a8a6a"/>
+  <text x="812" y="143" font-size="11" fill="#2d3748">Pass Rate (%)</text>
+
+  <!-- ============ TREND ANNOTATIONS ============ -->
+  <text x="860" y="180" text-anchor="middle" font-size="9" fill="#6a7a8a" font-style="italic">↓ lower is better</text>
+  <text x="860" y="194" text-anchor="middle" font-size="9" fill="#2a8a6a" font-style="italic">↑ higher is better</text>
+  <text x="860" y="206" text-anchor="middle" font-size="9" fill="#2a8a6a" font-style="italic">(Pass Rate)</text>
+
+  <!-- ============ FIGURE CAPTION ============ -->
+  <text x="530" y="535" text-anchor="middle" font-size="11.5" fill="#4a5568">
+    <tspan font-weight="700">Fig. 6.</tspan>
+    <tspan> Grouped metric comparison across four code generation configurations (normalized scores).</tspan>
+  </text>
+</svg>

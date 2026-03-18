@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" width="780" height="340"
+     font-family="'Times New Roman', Times, serif">
+
+  <!-- Background -->
+  <rect width="780" height="340" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="390" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a2e"
+        letter-spacing="0.2">TABLE IV: Static Analysis Quality Improvements</text>
+
+  <!-- ============ TABLE LAYOUT ============ -->
+  <!-- Col widths: Metric=260, Initial=220, After=220.  Total=700 -->
+  <!-- x-starts: 40, 300, 520 -->
+
+  <!-- Double top rule (IEEE) -->
+  <line x1="40" y1="50" x2="740" y2="50" stroke="#1a2840" stroke-width="2"/>
+  <line x1="40" y1="54" x2="740" y2="54" stroke="#1a2840" stroke-width="0.8"/>
+
+  <!-- Header background -->
+  <rect x="40" y="56" width="700" height="38" fill="#e8edf4"/>
+
+  <!-- Header labels -->
+  <text x="170" y="80" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">Metric</text>
+  <text x="410" y="80" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">Initial Code</text>
+  <text x="630" y="80" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">After EGRR Optimization</text>
+
+  <!-- Header bottom rule -->
+  <line x1="40" y1="94" x2="740" y2="94" stroke="#1a2840" stroke-width="1.2"/>
+
+  <!-- ============ DATA ROWS ============ -->
+
+  <!-- Row 1: Pylint Score -->
+  <text x="50" y="122" font-size="11.5" fill="#2d3748">Pylint Score (/10)</text>
+  <text x="410" y="122" text-anchor="middle" font-size="11.5" fill="#2d3748">4.8</text>
+  <text x="630" y="122" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">9.2</text>
+  <!-- Improvement arrow -->
+  <text x="710" y="122" font-size="10" fill="#2a8a6a">↑ 91.7%</text>
+  <line x1="40" y1="138" x2="740" y2="138" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 2: Cyclomatic Complexity -->
+  <text x="50" y="164" font-size="11.5" fill="#2d3748">Cyclomatic Complexity</text>
+  <text x="170" y="176" font-size="9.5" fill="#7a8a9a" font-style="italic">(avg. per function)</text>
+  <text x="410" y="168" text-anchor="middle" font-size="11.5" fill="#2d3748">14.2</text>
+  <text x="630" y="168" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">4.2</text>
+  <text x="710" y="168" font-size="10" fill="#2a8a6a">↓ 70.4%</text>
+  <line x1="40" y1="188" x2="740" y2="188" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 3: Maintainability Index -->
+  <text x="50" y="214" font-size="11.5" fill="#2d3748">Maintainability Index</text>
+  <text x="170" y="226" font-size="9.5" fill="#7a8a9a" font-style="italic">(Radon, 0–100)</text>
+  <text x="410" y="218" text-anchor="middle" font-size="11.5" fill="#2d3748">32.4</text>
+  <text x="630" y="218" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">78.6</text>
+  <text x="710" y="218" font-size="10" fill="#2a8a6a">↑ 142.6%</text>
+  <line x1="40" y1="238" x2="740" y2="238" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 4: Bandit Security Warnings (highlighted) -->
+  <rect x="40" y="240" width="700" height="38" fill="#f0f5fa"/>
+  <text x="50" y="264" font-size="11.5" fill="#2d3748">Bandit Security Warnings</text>
+  <text x="170" y="276" font-size="9.5" fill="#7a8a9a" font-style="italic">(CWE findings)</text>
+  <text x="410" y="268" text-anchor="middle" font-size="11.5" fill="#2d3748">5</text>
+  <text x="630" y="268" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">0</text>
+  <text x="710" y="268" font-size="10" fill="#2a8a6a">↓ 100%</text>
+
+  <!-- Double bottom rule (IEEE) -->
+  <line x1="40" y1="278" x2="740" y2="278" stroke="#1a2840" stroke-width="0.8"/>
+  <line x1="40" y1="282" x2="740" y2="282" stroke="#1a2840" stroke-width="2"/>
+
+  <!-- Column dividers -->
+  <line x1="300" y1="50" x2="300" y2="282" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="520" y1="50" x2="520" y2="282" stroke="#c8d0da" stroke-width="0.4"/>
+
+  <!-- ============ FOOTNOTES ============ -->
+  <text x="40" y="306" font-size="10" fill="#4a5a6a">Static analysis performed using Pylint (lint scoring), Radon (cyclomatic complexity, maintainability index), and Bandit (security vulnerability detection).</text>
+  <text x="40" y="322" font-size="10" fill="#4a5a6a">Improvement percentages shown relative to initial code values. ↑ = higher is better, ↓ = lower is better.</text>
+</svg>

@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560"
+     font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <clipPath id="plotArea">
+      <rect x="120" y="55" width="700" height="370"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="560" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="470" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1a2e"
+        letter-spacing="0.3">Multi-Objective Convergence Across Iterative Refinement</text>
+
+  <!-- ============ PLOT AREA ============ -->
+  <!-- Plot border -->
+  <rect x="120" y="55" width="700" height="370" fill="none" stroke="#bbc4ce" stroke-width="1"/>
+
+  <!-- ============ GRIDLINES (horizontal) ============ -->
+  <!-- y=0.0 → 425,  0.2 → 351,  0.4 → 277,  0.6 → 203,  0.8 → 129,  1.0 → 55 -->
+  <!-- y = 425 - (val * 370) -->
+  <line x1="120" y1="351" x2="820" y2="351" stroke="#e8ebef" stroke-width="0.7"/>
+  <line x1="120" y1="277" x2="820" y2="277" stroke="#e8ebef" stroke-width="0.7"/>
+  <line x1="120" y1="203" x2="820" y2="203" stroke="#e8ebef" stroke-width="0.7"/>
+  <line x1="120" y1="129" x2="820" y2="129" stroke="#e8ebef" stroke-width="0.7"/>
+  <line x1="120" y1="55"  x2="820" y2="55"  stroke="#e8ebef" stroke-width="0.7"/>
+
+  <!-- ============ GRIDLINES (vertical) ============ -->
+  <!-- x: 0→120, 1→295, 2→470, 3→645, 4→820 -->
+  <line x1="295" y1="55" x2="295" y2="425" stroke="#e8ebef" stroke-width="0.7"/>
+  <line x1="470" y1="55" x2="470" y2="425" stroke="#e8ebef" stroke-width="0.7"/>
+  <line x1="645" y1="55" x2="645" y2="425" stroke="#e8ebef" stroke-width="0.7"/>
+  <line x1="820" y1="55" x2="820" y2="425" stroke="#e8ebef" stroke-width="0.7"/>
+
+  <!-- ============ AXIS TICK LABELS ============ -->
+  <!-- Y-axis labels -->
+  <text x="112" y="429" text-anchor="end" font-size="11" fill="#4a5568">0.0</text>
+  <text x="112" y="355" text-anchor="end" font-size="11" fill="#4a5568">0.2</text>
+  <text x="112" y="281" text-anchor="end" font-size="11" fill="#4a5568">0.4</text>
+  <text x="112" y="207" text-anchor="end" font-size="11" fill="#4a5568">0.6</text>
+  <text x="112" y="133" text-anchor="end" font-size="11" fill="#4a5568">0.8</text>
+  <text x="112" y="59"  text-anchor="end" font-size="11" fill="#4a5568">1.0</text>
+
+  <!-- X-axis labels -->
+  <text x="120" y="445" text-anchor="middle" font-size="11" fill="#4a5568">0</text>
+  <text x="295" y="445" text-anchor="middle" font-size="11" fill="#4a5568">1</text>
+  <text x="470" y="445" text-anchor="middle" font-size="11" fill="#4a5568">2</text>
+  <text x="645" y="445" text-anchor="middle" font-size="11" fill="#4a5568">3</text>
+  <text x="820" y="445" text-anchor="middle" font-size="11" fill="#4a5568">4</text>
+
+  <!-- Y-axis tick marks -->
+  <line x1="116" y1="425" x2="120" y2="425" stroke="#4a5568" stroke-width="1"/>
+  <line x1="116" y1="351" x2="120" y2="351" stroke="#4a5568" stroke-width="1"/>
+  <line x1="116" y1="277" x2="120" y2="277" stroke="#4a5568" stroke-width="1"/>
+  <line x1="116" y1="203" x2="120" y2="203" stroke="#4a5568" stroke-width="1"/>
+  <line x1="116" y1="129" x2="120" y2="129" stroke="#4a5568" stroke-width="1"/>
+  <line x1="116" y1="55"  x2="120" y2="55"  stroke="#4a5568" stroke-width="1"/>
+
+  <!-- X-axis tick marks -->
+  <line x1="120" y1="425" x2="120" y2="429" stroke="#4a5568" stroke-width="1"/>
+  <line x1="295" y1="425" x2="295" y2="429" stroke="#4a5568" stroke-width="1"/>
+  <line x1="470" y1="425" x2="470" y2="429" stroke="#4a5568" stroke-width="1"/>
+  <line x1="645" y1="425" x2="645" y2="429" stroke="#4a5568" stroke-width="1"/>
+  <line x1="820" y1="425" x2="820" y2="429" stroke="#4a5568" stroke-width="1"/>
+
+  <!-- ============ AXIS LABELS ============ -->
+  <text x="470" y="472" text-anchor="middle" font-size="13" font-weight="600" fill="#2d3748">Refinement Iteration (i)</text>
+  <text x="38" y="240" text-anchor="middle" font-size="13" font-weight="600" fill="#2d3748"
+        transform="rotate(-90, 38, 240)">Normalized Metric Value</text>
+
+  <!-- ============ DATA CURVES ============ -->
+  <!-- Data (normalized 0–1):
+       Runtime (ms):            1.00, 0.62, 0.35, 0.27, 0.24
+       Cyclomatic Complexity:   0.88, 0.55, 0.32, 0.23, 0.20
+       Vulnerability Count:     0.78, 0.40, 0.18, 0.10, 0.08
+       Test Pass Rate (%):      0.28, 0.60, 0.82, 0.91, 0.95
+
+       y = 425 - (val * 370)
+       Runtime:      425-370=55,  425-229=196,  425-130=295,  425-100=325,  425-89=336
+       Complexity:   425-326=99,  425-204=221,  425-118=307,  425-85=340,   425-74=351
+       Vulnerability:425-289=136, 425-148=277,  425-67=358,   425-37=388,   425-30=395
+       TestPass:     425-104=321, 425-222=203,  425-303=122,  425-337=88,   425-352=73
+  -->
+
+  <!-- Curve 1: Runtime (ms) — solid line, dark blue -->
+  <polyline points="120,55 295,196 470,295 645,325 820,336"
+            fill="none" stroke="#2b5797" stroke-width="2.2"
+            clip-path="url(#plotArea)"/>
+  <!-- Data points -->
+  <circle cx="120" cy="55"  r="4" fill="#2b5797"/>
+  <circle cx="295" cy="196" r="4" fill="#2b5797"/>
+  <circle cx="470" cy="295" r="4" fill="#2b5797"/>
+  <circle cx="645" cy="325" r="4" fill="#2b5797"/>
+  <circle cx="820" cy="336" r="4" fill="#2b5797"/>
+
+  <!-- Curve 2: Cyclomatic Complexity — dashed line, steel blue -->
+  <polyline points="120,99 295,221 470,307 645,340 820,351"
+            fill="none" stroke="#5b86b8" stroke-width="2.2" stroke-dasharray="10,5"
+            clip-path="url(#plotArea)"/>
+  <circle cx="120" cy="99"  r="4" fill="#5b86b8"/>
+  <circle cx="295" cy="221" r="4" fill="#5b86b8"/>
+  <circle cx="470" cy="307" r="4" fill="#5b86b8"/>
+  <circle cx="645" cy="340" r="4" fill="#5b86b8"/>
+  <circle cx="820" cy="351" r="4" fill="#5b86b8"/>
+
+  <!-- Curve 3: Vulnerability Count — dotted line, slate gray -->
+  <polyline points="120,136 295,277 470,358 645,388 820,395"
+            fill="none" stroke="#6b7f96" stroke-width="2.2" stroke-dasharray="3,4"
+            clip-path="url(#plotArea)"/>
+  <circle cx="120" cy="136" r="4" fill="#6b7f96"/>
+  <circle cx="295" cy="277" r="4" fill="#6b7f96"/>
+  <circle cx="470" cy="358" r="4" fill="#6b7f96"/>
+  <circle cx="645" cy="388" r="4" fill="#6b7f96"/>
+  <circle cx="820" cy="395" r="4" fill="#6b7f96"/>
+
+  <!-- Curve 4: Test Pass Rate — dash-dot line, teal -->
+  <polyline points="120,321 295,203 470,122 645,88 820,73"
+            fill="none" stroke="#2a8a6a" stroke-width="2.2" stroke-dasharray="12,4,3,4"
+            clip-path="url(#plotArea)"/>
+  <circle cx="120" cy="321" r="4" fill="#2a8a6a"/>
+  <circle cx="295" cy="203" r="4" fill="#2a8a6a"/>
+  <circle cx="470" cy="122" r="4" fill="#2a8a6a"/>
+  <circle cx="645" cy="88"  r="4" fill="#2a8a6a"/>
+  <circle cx="820" cy="73"  r="4" fill="#2a8a6a"/>
+
+  <!-- ============ CONVERGENCE ANNOTATION ============ -->
+  <!-- Bracket / annotation near iteration 4 -->
+  <line x1="775" y1="410" x2="815" y2="400" stroke="#888e98" stroke-width="0.8"/>
+  <text x="762" y="418" text-anchor="end" font-size="9.5" fill="#555e6a" font-style="italic">Convergence Achieved</text>
+
+  <!-- ============ LEGEND ============ -->
+  <rect x="610" y="62" width="200" height="100" rx="3" fill="#ffffff" stroke="#c0c8d2" stroke-width="0.9"/>
+
+  <!-- Runtime -->
+  <line x1="620" y1="82" x2="654" y2="82" stroke="#2b5797" stroke-width="2.2"/>
+  <circle cx="637" cy="82" r="3.5" fill="#2b5797"/>
+  <text x="662" y="86" font-size="11" fill="#2d3748">Runtime (ms)</text>
+
+  <!-- Cyclomatic Complexity -->
+  <line x1="620" y1="104" x2="654" y2="104" stroke="#5b86b8" stroke-width="2.2" stroke-dasharray="10,5"/>
+  <circle cx="637" cy="104" r="3.5" fill="#5b86b8"/>
+  <text x="662" y="108" font-size="11" fill="#2d3748">Cyclomatic Complexity</text>
+
+  <!-- Vulnerability Count -->
+  <line x1="620" y1="126" x2="654" y2="126" stroke="#6b7f96" stroke-width="2.2" stroke-dasharray="3,4"/>
+  <circle cx="637" cy="126" r="3.5" fill="#6b7f96"/>
+  <text x="662" y="130" font-size="11" fill="#2d3748">Vulnerability Count</text>
+
+  <!-- Test Pass Rate -->
+  <line x1="620" y1="148" x2="654" y2="148" stroke="#2a8a6a" stroke-width="2.2" stroke-dasharray="12,4,3,4"/>
+  <circle cx="637" cy="148" r="3.5" fill="#2a8a6a"/>
+  <text x="662" y="152" font-size="11" fill="#2d3748">Test Pass Rate (%)</text>
+
+  <!-- ============ FIGURE CAPTION ============ -->
+  <text x="470" y="530" text-anchor="middle" font-size="11.5" fill="#4a5568">
+    <tspan font-weight="700">Fig. 5.</tspan>
+    <tspan> Multi-objective metric convergence across EGRR iterative refinement (normalized values, iterations 0–4).</tspan>
+  </text>
+</svg>

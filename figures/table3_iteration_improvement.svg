@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 370" width="1000" height="370"
+     font-family="'Times New Roman', Times, serif">
+
+  <!-- Background -->
+  <rect width="1000" height="370" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a2e"
+        letter-spacing="0.2">TABLE III: Multi-Objective Improvement Across EGRR Iterations</text>
+
+  <!-- ============ TABLE LAYOUT ============ -->
+  <!-- Col widths: Iteration=180, then 5 data cols × ~148 = 740.  Total = 920 -->
+  <!-- x-starts: 40, 220, 368, 516, 664, 812 -->
+
+  <!-- Double top rule (IEEE) -->
+  <line x1="40" y1="50" x2="960" y2="50" stroke="#1a2840" stroke-width="2"/>
+  <line x1="40" y1="54" x2="960" y2="54" stroke="#1a2840" stroke-width="0.8"/>
+
+  <!-- Header background -->
+  <rect x="40" y="56" width="920" height="44" fill="#e8edf4"/>
+
+  <!-- Header labels -->
+  <text x="130" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">Iteration</text>
+
+  <text x="294" y="74" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Test Pass Rate</text>
+  <text x="294" y="88" text-anchor="middle" font-size="10" fill="#4a5a70">(%)</text>
+
+  <text x="442" y="74" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Avg. Runtime</text>
+  <text x="442" y="88" text-anchor="middle" font-size="10" fill="#4a5a70">(ms)</text>
+
+  <text x="590" y="74" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Cyclomatic</text>
+  <text x="590" y="88" text-anchor="middle" font-size="10" fill="#4a5a70">Complexity</text>
+
+  <text x="738" y="74" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Vulnerability</text>
+  <text x="738" y="88" text-anchor="middle" font-size="10" fill="#4a5a70">Count</text>
+
+  <text x="886" y="74" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a2840">Code Coverage</text>
+  <text x="886" y="88" text-anchor="middle" font-size="10" fill="#4a5a70">(%)</text>
+
+  <!-- Header bottom rule -->
+  <line x1="40" y1="100" x2="960" y2="100" stroke="#1a2840" stroke-width="1.2"/>
+
+  <!-- ============ DATA ROWS ============ -->
+
+  <!-- Row 0: Iteration 0 (Initial Code from RAG-CodeGen) -->
+  <text x="50" y="126" font-size="11" fill="#4a5a70">Iter 0</text>
+  <text x="110" y="126" font-size="10" fill="#7a8a9a" font-style="italic">(Initial Code)</text>
+  <text x="294" y="126" text-anchor="middle" font-size="11.5" fill="#2d3748">42.0</text>
+  <text x="442" y="126" text-anchor="middle" font-size="11.5" fill="#2d3748">348</text>
+  <text x="590" y="126" text-anchor="middle" font-size="11.5" fill="#2d3748">14.2</text>
+  <text x="738" y="126" text-anchor="middle" font-size="11.5" fill="#2d3748">5</text>
+  <text x="886" y="126" text-anchor="middle" font-size="11.5" fill="#2d3748">38.0</text>
+  <line x1="40" y1="140" x2="960" y2="140" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 1: Iteration 1 (Baseline EGRR) — Priority: Correctness -->
+  <text x="50" y="162" font-size="11" fill="#4a5a70">Iter 1</text>
+  <text x="110" y="162" font-size="10" fill="#7a8a9a" font-style="italic">(Baseline)</text>
+  <text x="294" y="162" text-anchor="middle" font-size="11.5" fill="#2d3748">68.0</text>
+  <text x="442" y="162" text-anchor="middle" font-size="11.5" fill="#2d3748">312</text>
+  <text x="590" y="162" text-anchor="middle" font-size="11.5" fill="#2d3748">11.8</text>
+  <text x="738" y="162" text-anchor="middle" font-size="11.5" fill="#2d3748">4</text>
+  <text x="886" y="162" text-anchor="middle" font-size="11.5" fill="#2d3748">56.0</text>
+  <line x1="40" y1="176" x2="960" y2="176" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 2: Iteration 2 (Enhanced — Correctness focus) -->
+  <text x="50" y="198" font-size="11" fill="#4a5a70">Iter 2</text>
+  <text x="110" y="198" font-size="10" fill="#7a8a9a" font-style="italic">(Correctness)</text>
+  <text x="294" y="198" text-anchor="middle" font-size="11.5" fill="#2d3748">88.0</text>
+  <text x="442" y="198" text-anchor="middle" font-size="11.5" fill="#2d3748">245</text>
+  <text x="590" y="198" text-anchor="middle" font-size="11.5" fill="#2d3748">8.4</text>
+  <text x="738" y="198" text-anchor="middle" font-size="11.5" fill="#2d3748">2</text>
+  <text x="886" y="198" text-anchor="middle" font-size="11.5" fill="#2d3748">74.0</text>
+  <line x1="40" y1="212" x2="960" y2="212" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 3: Iteration 3 (Enhanced — Performance focus) -->
+  <text x="50" y="234" font-size="11" fill="#4a5a70">Iter 3</text>
+  <text x="110" y="234" font-size="10" fill="#7a8a9a" font-style="italic">(Performance)</text>
+  <text x="294" y="234" text-anchor="middle" font-size="11.5" fill="#2d3748">94.0</text>
+  <text x="442" y="234" text-anchor="middle" font-size="11.5" fill="#2d3748">178</text>
+  <text x="590" y="234" text-anchor="middle" font-size="11.5" fill="#2d3748">5.6</text>
+  <text x="738" y="234" text-anchor="middle" font-size="11.5" fill="#2d3748">1</text>
+  <text x="886" y="234" text-anchor="middle" font-size="11.5" fill="#2d3748">86.0</text>
+  <line x1="40" y1="248" x2="960" y2="248" stroke="#dde2e8" stroke-width="0.5"/>
+
+  <!-- Row 4: Final Optimized Code (highlighted) -->
+  <rect x="40" y="250" width="920" height="38" fill="#f0f5fa"/>
+  <text x="50" y="274" font-size="11" font-weight="700" fill="#1a2840">Final</text>
+  <text x="110" y="274" font-size="10" font-weight="700" fill="#1a3860" font-style="italic">(Optimized c*)</text>
+  <text x="294" y="274" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">100.0</text>
+  <text x="442" y="274" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">156</text>
+  <text x="590" y="274" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">4.2</text>
+  <text x="738" y="274" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">0</text>
+  <text x="886" y="274" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a2840">94.0</text>
+
+  <!-- Double bottom rule (IEEE) -->
+  <line x1="40" y1="288" x2="960" y2="288" stroke="#1a2840" stroke-width="0.8"/>
+  <line x1="40" y1="292" x2="960" y2="292" stroke="#1a2840" stroke-width="2"/>
+
+  <!-- Column dividers -->
+  <line x1="220" y1="50" x2="220" y2="292" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="368" y1="50" x2="368" y2="292" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="516" y1="50" x2="516" y2="292" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="664" y1="50" x2="664" y2="292" stroke="#c8d0da" stroke-width="0.4"/>
+  <line x1="812" y1="50" x2="812" y2="292" stroke="#c8d0da" stroke-width="0.4"/>
+
+  <!-- ============ FOOTNOTES ============ -->
+  <text x="40" y="316" font-size="10" fill="#4a5a6a">Best results shown in
+    <tspan font-weight="700">bold</tspan>. Progressive multi-objective priority: Correctness (Iter 2) → Performance (Iter 3) → Security → Maintainability.
+  </text>
+  <text x="40" y="332" font-size="10" fill="#4a5a6a">Iter 0 = RAG-CodeGen output (Stage 1). Iter 1 = Baseline EGRR (no novelty). Iter 2+ = Enhanced EGRR with static/dynamic analysis and adversarial testing.</text>
+  <text x="40" y="348" font-size="10" fill="#4a5a6a" font-style="italic">Note: Values are illustrative and consistent with the convergence plot (Fig. 5). Replace with actual experimental results before submission.</text>
+</svg>

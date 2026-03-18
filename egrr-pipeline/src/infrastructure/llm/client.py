@@ -34,8 +34,8 @@ class HuggingFaceLLM:
         self.seed = settings.llm_seed
         self.timeout = 300  # 5 minutes for long generations
         
-        # Ollama generate endpoint
-        self.api_url = f"{self.base_url}/api/generate"
+        # Ollama chat endpoint (for instruction-tuned models)
+        self.api_url = f"{self.base_url}/api/chat"
         
         print(f"Using LLM model: {self.model} (Ollama @ {self.base_url})")
         
@@ -76,11 +76,27 @@ class HuggingFaceLLM:
 
     async def generate(self, prompt: str, max_tokens: int | None = None) -> str:
         """
-        Generate text using Ollama's /api/generate endpoint asynchronously.
+        Generate text using Ollama's /api/chat endpoint asynchronously.
+        Wraps a plain text prompt as a single user message.
         
         Args:
-            prompt: The input prompt (plain text, no chat format).
+            prompt: The input prompt (plain text).
             max_tokens: Maximum tokens to generate.
+            
+        Returns:
+            Generated text response.
+        """
+        messages = [{"role": "user", "content": prompt}]
+        return await self._chat(messages, max_tokens)
+
+    async def _chat(self, messages: list[dict[str, str]], max_tokens: int | None = None, json_format: bool = False) -> str:
+        """
+        Send a chat completion request to Ollama's /api/chat endpoint.
+        
+        Args:
+            messages: List of {role, content} chat messages.
+            max_tokens: Maximum tokens to generate.
+            json_format: If True, use Ollama's JSON format mode for structured output.
             
         Returns:
             Generated text response.
@@ -89,7 +105,7 @@ class HuggingFaceLLM:
         
         payload = {
             "model": self.model,
-            "prompt": prompt,
+            "messages": messages,
             "stream": False,  # Get complete response
             "options": {
                 "num_predict": max_tokens or self.max_tokens,
@@ -99,6 +115,9 @@ class HuggingFaceLLM:
                 "repeat_penalty": 1.1,
             }
         }
+        
+        if json_format:
+            payload["format"] = "json"
 
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             for attempt in range(MAX_RETRIES):
@@ -111,7 +130,8 @@ class HuggingFaceLLM:
                     response.raise_for_status()
                     
                     result = response.json()
-                    generated_text = result.get("response", "")
+                    # /api/chat returns {message: {role, content}}
+                    generated_text = result.get("message", {}).get("content", "")
                     
                     if not generated_text:
                         raise ValueError("Empty response from Ollama")
@@ -144,39 +164,38 @@ class HuggingFaceLLM:
         """
         Generate JSON response with robust extraction logic asynchronously.
         
+        Uses the /api/chat endpoint with proper chat message format for
+        instruction-tuned models.
+        
         Args:
             prompt_or_messages: Either a string prompt or list of chat messages.
-                               Chat messages are converted to plain text.
+                               Chat messages are passed DIRECTLY to the chat API.
             max_tokens: Maximum tokens to generate.
             
         Returns:
             Extracted JSON string.
         """
-        # JSON constraint instruction
+        # JSON constraint instruction (simpler since format:json enforces structure)
         constraint = (
-            "\n\nIMPORTANT: Your response must be A SINGLE JSON OBJECT and nothing else. "
-            "Do not include markdown code blocks, explanations, or any prefix/suffix. "
-            "Start your response directly with '{' and end with '}'."
+            "\n\nYou MUST respond with ONLY a JSON object. "
+            "Start with '{' and end with '}'. No other text."
         )
         
-        # Convert messages to plain text if needed
+        # Build chat messages with proper roles
         if isinstance(prompt_or_messages, str):
-            prompt_text = prompt_or_messages + constraint
+            messages = [{"role": "user", "content": prompt_or_messages + constraint}]
         else:
-            # Convert chat messages to plain text prompt
-            prompt_text = ""
+            # Pass structured chat messages directly, append constraint to last user message
+            messages = []
             for msg in prompt_or_messages:
-                role = msg.get("role", "user")
-                content = msg.get("content", "")
-                if role == "system":
-                    prompt_text += f"{content}\n\n"
-                elif role == "user":
-                    prompt_text += f"User: {content}\n"
-                elif role == "assistant":
-                    prompt_text += f"Assistant: {content}\n"
-            prompt_text += constraint
+                messages.append({"role": msg.get("role", "user"), "content": msg.get("content", "")})
+            # Append JSON constraint to the last user message
+            if messages and messages[-1]["role"] == "user":
+                messages[-1]["content"] += constraint
+            else:
+                messages.append({"role": "user", "content": constraint})
             
-        raw_response = (await self.generate(prompt_text, max_tokens)).strip()
+        raw_response = (await self._chat(messages, max_tokens, json_format=True)).strip()
         
         # Robust JSON Extraction Strategy:
         

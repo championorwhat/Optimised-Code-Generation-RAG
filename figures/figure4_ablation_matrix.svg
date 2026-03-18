@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" width="1100" height="520"
+     font-family="'Times New Roman', Times, serif">
+  <defs>
+    <filter id="sh" x="-1%" y="-1%" width="102%" height="102%">
+      <feDropShadow dx="0.5" dy="0.5" stdDeviation="1" flood-color="#00000010"/>
+    </filter>
+    <!-- Checkmark symbol -->
+    <symbol id="check" viewBox="0 0 24 24">
+      <rect width="24" height="24" rx="3" fill="#3d6ea5"/>
+      <polyline points="6,12 10,17 18,7" fill="none" stroke="#ffffff" stroke-width="2.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- Empty box symbol -->
+    <symbol id="empty" viewBox="0 0 24 24">
+      <rect x="1" y="1" width="22" height="22" rx="3" fill="#eef0f3" stroke="#c0c8d2" stroke-width="1.2"/>
+    </symbol>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="520" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="36" text-anchor="middle" font-size="17" font-weight="700" fill="#1a2840"
+        letter-spacing="0.3">Ablation Configurations (C1–C5) Across Retrieval and Refinement Components</text>
+
+  <!-- ============ GRID PARAMETERS ============ -->
+  <!-- Row label col: x=0..250  |  7 data columns: each 110px wide, starting at x=258 -->
+  <!-- Header row: y=60..110   |  5 data rows: each 62px tall, starting at y=118 -->
+
+  <!-- ============ COLUMN HEADERS ============ -->
+  <!-- Header background -->
+  <rect x="258" y="60" width="770" height="55" rx="0" fill="#d5dfe9"/>
+  <!-- Vertical dividers in header -->
+  <line x1="368" y1="60" x2="368" y2="115" stroke="#b0bcc8" stroke-width="0.8"/>
+  <line x1="478" y1="60" x2="478" y2="115" stroke="#b0bcc8" stroke-width="0.8"/>
+  <line x1="588" y1="60" x2="588" y2="115" stroke="#b0bcc8" stroke-width="0.8"/>
+  <line x1="698" y1="60" x2="698" y2="115" stroke="#b0bcc8" stroke-width="0.8"/>
+  <line x1="808" y1="60" x2="808" y2="115" stroke="#b0bcc8" stroke-width="0.8"/>
+  <line x1="918" y1="60" x2="918" y2="115" stroke="#b0bcc8" stroke-width="0.8"/>
+
+  <!-- Header labels -->
+  <text x="313" y="83" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Semantic</text>
+  <text x="313" y="97" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Retrieval (RAG)</text>
+
+  <text x="423" y="83" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Unit Testing</text>
+  <text x="423" y="97" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">(Sandbox)</text>
+
+  <text x="533" y="83" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Static</text>
+  <text x="533" y="97" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Analysis</text>
+
+  <text x="643" y="83" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Dynamic</text>
+  <text x="643" y="97" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Profiling</text>
+
+  <text x="753" y="83" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Adversarial</text>
+  <text x="753" y="97" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Testing</text>
+
+  <text x="863" y="83" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Exec-Driven</text>
+  <text x="863" y="97" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Re-Retrieval</text>
+
+  <text x="973" y="83" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">Refinement</text>
+  <text x="973" y="97" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2840">LLM</text>
+
+  <!-- Header top border -->
+  <line x1="258" y1="60" x2="1028" y2="60" stroke="#8a9aac" stroke-width="1.2"/>
+  <!-- Header bottom border -->
+  <line x1="20" y1="115" x2="1028" y2="115" stroke="#8a9aac" stroke-width="1.8"/>
+
+  <!-- ============ ROW LABEL COLUMN HEADER ============ -->
+  <rect x="20" y="60" width="236" height="55" rx="0" fill="#c8d4e2"/>
+  <text x="138" y="93" text-anchor="middle" font-size="12" font-weight="700" fill="#1a2840">Configuration</text>
+  <line x1="20" y1="60" x2="256" y2="60" stroke="#8a9aac" stroke-width="1.2"/>
+
+  <!-- ============ DATA ROWS ============ -->
+
+  <!-- Row 1: C1 – Zero-Shot Baseline -->
+  <rect x="20" y="118" width="236" height="60" fill="#f7f9fb"/>
+  <rect x="258" y="118" width="770" height="60" fill="#fafbfc"/>
+  <text x="138" y="144" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2a4060">C1</text>
+  <text x="138" y="162" text-anchor="middle" font-size="10.5" fill="#5a6a80">Zero-Shot Baseline</text>
+  <!-- All disabled -->
+  <use href="#empty" x="301" y="137" width="24" height="24"/>
+  <use href="#empty" x="411" y="137" width="24" height="24"/>
+  <use href="#empty" x="521" y="137" width="24" height="24"/>
+  <use href="#empty" x="631" y="137" width="24" height="24"/>
+  <use href="#empty" x="741" y="137" width="24" height="24"/>
+  <use href="#empty" x="851" y="137" width="24" height="24"/>
+  <use href="#empty" x="961" y="137" width="24" height="24"/>
+  <line x1="20" y1="178" x2="1028" y2="178" stroke="#dde2e8" stroke-width="0.8"/>
+
+  <!-- Row 2: C2 – RAG Only -->
+  <rect x="20" y="180" width="236" height="60" fill="#f0f4f8"/>
+  <rect x="258" y="180" width="770" height="60" fill="#f5f7fa"/>
+  <text x="138" y="206" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2a4060">C2</text>
+  <text x="138" y="224" text-anchor="middle" font-size="10.5" fill="#5a6a80">RAG Only</text>
+  <!-- Semantic Retrieval enabled, rest disabled -->
+  <use href="#check" x="301" y="199" width="24" height="24"/>
+  <use href="#empty" x="411" y="199" width="24" height="24"/>
+  <use href="#empty" x="521" y="199" width="24" height="24"/>
+  <use href="#empty" x="631" y="199" width="24" height="24"/>
+  <use href="#empty" x="741" y="199" width="24" height="24"/>
+  <use href="#empty" x="851" y="199" width="24" height="24"/>
+  <use href="#empty" x="961" y="199" width="24" height="24"/>
+  <line x1="20" y1="240" x2="1028" y2="240" stroke="#dde2e8" stroke-width="0.8"/>
+
+  <!-- Row 3: C3 – Test-Driven Refinement -->
+  <rect x="20" y="242" width="236" height="60" fill="#f7f9fb"/>
+  <rect x="258" y="242" width="770" height="60" fill="#fafbfc"/>
+  <text x="138" y="268" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2a4060">C3</text>
+  <text x="138" y="286" text-anchor="middle" font-size="10.5" fill="#5a6a80">Test-Driven Refinement</text>
+  <!-- Retrieval + Unit Testing enabled -->
+  <use href="#check" x="301" y="261" width="24" height="24"/>
+  <use href="#check" x="411" y="261" width="24" height="24"/>
+  <use href="#empty" x="521" y="261" width="24" height="24"/>
+  <use href="#empty" x="631" y="261" width="24" height="24"/>
+  <use href="#empty" x="741" y="261" width="24" height="24"/>
+  <use href="#empty" x="851" y="261" width="24" height="24"/>
+  <use href="#empty" x="961" y="261" width="24" height="24"/>
+  <line x1="20" y1="302" x2="1028" y2="302" stroke="#dde2e8" stroke-width="0.8"/>
+
+  <!-- Row 4: C4 – Full Proposed System -->
+  <rect x="20" y="304" width="236" height="60" fill="#e8eff7"/>
+  <rect x="258" y="304" width="770" height="60" fill="#edf2f8"/>
+  <text x="138" y="330" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a3860">C4</text>
+  <text x="138" y="348" text-anchor="middle" font-size="10.5" fill="#3a5a80">Full Proposed System</text>
+  <!-- All enabled -->
+  <use href="#check" x="301" y="323" width="24" height="24"/>
+  <use href="#check" x="411" y="323" width="24" height="24"/>
+  <use href="#check" x="521" y="323" width="24" height="24"/>
+  <use href="#check" x="631" y="323" width="24" height="24"/>
+  <use href="#check" x="741" y="323" width="24" height="24"/>
+  <use href="#check" x="851" y="323" width="24" height="24"/>
+  <use href="#check" x="961" y="323" width="24" height="24"/>
+  <line x1="20" y1="364" x2="1028" y2="364" stroke="#dde2e8" stroke-width="0.8"/>
+
+  <!-- Row 5: C5 – Refinement Without Retrieval -->
+  <rect x="20" y="366" width="236" height="60" fill="#f7f9fb"/>
+  <rect x="258" y="366" width="770" height="60" fill="#fafbfc"/>
+  <text x="138" y="392" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2a4060">C5</text>
+  <text x="138" y="410" text-anchor="middle" font-size="10.5" fill="#5a6a80">Refinement w/o Retrieval</text>
+  <!-- All refinement enabled EXCEPT Semantic Retrieval -->
+  <use href="#empty" x="301" y="385" width="24" height="24"/>
+  <use href="#check" x="411" y="385" width="24" height="24"/>
+  <use href="#check" x="521" y="385" width="24" height="24"/>
+  <use href="#check" x="631" y="385" width="24" height="24"/>
+  <use href="#check" x="741" y="385" width="24" height="24"/>
+  <use href="#check" x="851" y="385" width="24" height="24"/>
+  <use href="#check" x="961" y="385" width="24" height="24"/>
+
+  <!-- ============ TABLE BORDERS ============ -->
+  <!-- Outer border -->
+  <rect x="20" y="60" width="1008" height="366" rx="0" fill="none" stroke="#8a9aac" stroke-width="1.4"/>
+  <!-- Left column divider -->
+  <line x1="256" y1="60" x2="256" y2="426" stroke="#8a9aac" stroke-width="1.2"/>
+  <!-- Bottom border -->
+  <line x1="20" y1="426" x2="1028" y2="426" stroke="#8a9aac" stroke-width="1.4"/>
+
+  <!-- Vertical grid lines (data columns) -->
+  <line x1="368" y1="118" x2="368" y2="426" stroke="#dde2e8" stroke-width="0.6"/>
+  <line x1="478" y1="118" x2="478" y2="426" stroke="#dde2e8" stroke-width="0.6"/>
+  <line x1="588" y1="118" x2="588" y2="426" stroke="#dde2e8" stroke-width="0.6"/>
+  <line x1="698" y1="118" x2="698" y2="426" stroke="#dde2e8" stroke-width="0.6"/>
+  <line x1="808" y1="118" x2="808" y2="426" stroke="#dde2e8" stroke-width="0.6"/>
+  <line x1="918" y1="118" x2="918" y2="426" stroke="#dde2e8" stroke-width="0.6"/>
+
+  <!-- ============ LEGEND ============ -->
+  <use href="#check" x="310" y="450" width="18" height="18"/>
+  <text x="334" y="464" font-size="10.5" fill="#3a4a5a">Enabled</text>
+  <use href="#empty" x="400" y="450" width="18" height="18"/>
+  <text x="424" y="464" font-size="10.5" fill="#3a4a5a">Disabled</text>
+
+  <!-- ============ CAPTION ============ -->
+  <text x="550" y="502" text-anchor="middle" font-size="11.5" fill="#3a4a5a">
+    <tspan font-weight="700">Fig. 4.</tspan>
+    <tspan> Progressive activation of retrieval and execution-driven refinement components for controlled experimental evaluation.</tspan>
+  </text>
+</svg>
